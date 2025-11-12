@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Reservaciones</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411", // <-- Coincide con Home
+              "card-dark": "#1E1E1E",     // <-- Coincide con Home
+              "text-primary-dark": "#F5F5F5",
+              "text-secondary-dark": "#A9A9A9",
+              "border-dark": "#3c3c3c", // Color de tu pág. de reserva
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      /* NOTA DE LIMPIEZA: Estilos consolidados */
+      body {
+        min-height: 100dvh;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<!-- Fondo -->
+  <div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+      style="background-image: url('images/FestaFrontal.webp');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+  </div> 
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+  
+  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <img src="images/logoFesta.png" alt="FESTA" class="h-12 sm:h-12 object-contain" />
+    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Ver notificaciones">
+      <span class="material-symbols-outlined text-2xl">notifications</span>
+    </button>
+  </header>
+
+  <main class="flex-1 pb-28"> <div class="flex px-4 py-3">
+      <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
+        <button id="reservations-tab-btn" class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 bg-primary text-white text-sm font-medium">
+          Reservaciones
+        </button>
+        <button id="orders-tab-btn" class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium">
+          Pedidos
+        </button>
+      </div>
+    </div>
+
+    <div id="reservations-content" class="tab-content px-4 pt-2 pb-6">
+      
+      <div id="reservation-form">
+        <h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-left pb-3 pt-4">Reservar una Mesa</h1>
+        
+        <form class="flex flex-col">
+          <div class="flex w-full flex-wrap items-end gap-4 py-3">
+            <label class="flex flex-col min-w-40 flex-1" for="res-date">
+              <p class="text-white text-base font-medium leading-normal pb-2">Fecha</p>
+              <div class="relative flex w-full flex-1 items-stretch rounded-lg">
+                <input id="res-date" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-border-dark bg-card-dark focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" 
+                       placeholder="Elige una fecha" type="text"
+                       onfocus="(this.type='date')" 
+                       onblur="(this.type='text')">
+                <div class="text-text-secondary-dark flex border border-border-dark bg-card-dark items-center justify-center pr-[15px] rounded-r-lg border-l-0">
+                  <span class="material-symbols-outlined">calendar_today</span>
+                </div>
+              </div>
+            </label>
+            <label class="flex flex-col w-24" for="res-guests">
+              <p class="text-white text-base font-medium leading-normal pb-2">Personas</p>
+              <input id="res-guests" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-border-dark bg-card-dark focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal text-center" 
+                     type="number" value="2">
+            </label>
+          </div>
+
+          <div class="flex flex-col py-3">
+            <p class="text-white text-base font-medium leading-normal pb-2">Hora</p>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-snap-x">
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-card-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap transition-colors">7:00 PM</button>
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-primary text-white text-sm font-medium whitespace-nowrap transition-colors">7:30 PM</button>
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-card-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap transition-colors">8:00 PM</button>
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-card-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap transition-colors">8:30 PM</button>
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-card-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap transition-colors">9:00 PM</button>
+              <button type="button" class="time-slot-btn scroll-snap-start flex items-center justify-center h-10 px-4 rounded-full bg-card-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap transition-colors">9:30 PM</button>
+            </div>
+          </div>
+
+          <div class="flex flex-col py-3 mt-2">
+            <p class="text-white text-base font-medium leading-normal pb-3">Elige tu ambiente</p>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="vibe-card flex flex-col items-center justify-center gap-2 p-3 rounded-xl border-2 border-primary bg-primary/20 cursor-pointer transition-all">
+                <span class="material-symbols-outlined text-primary text-3xl">deck</span>
+                <p class="text-white text-sm font-medium">Terraza</p>
+              </div>
+              <div class="vibe-card flex flex-col items-center justify-center gap-2 p-3 rounded-xl border border-border-dark bg-card-dark cursor-pointer transition-all text-text-secondary-dark hover:border-border-dark/70">
+                <span class="material-symbols-outlined text-3xl">nightlife</span>
+                <p class="text-sm font-medium">Bar</p>
+              </div>
+              <div class="vibe-card flex flex-col items-center justify-center gap-2 p-3 rounded-xl border border-border-dark bg-card-dark cursor-pointer transition-all text-text-secondary-dark hover:border-border-dark/70">
+                <span class="material-symbols-outlined text-3xl">restaurant</span>
+                <p class="text-sm font-medium">Salón Principal</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 mb-4">
+            <button id="find-table-btn" type="button" class="w-full h-14 bg-primary rounded-xl text-white font-bold text-lg flex items-center justify-center transition-transform active:scale-95">
+              Buscar Mesa
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="reservation-confirmation" class="hidden">
+        <h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-left pb-3 pt-4">¡Tu Mesa está Lista!</h1>
+        <div class="flex flex-col items-center gap-4 bg-card-dark/90 p-6 rounded-xl border border-border-dark mt-2">
+          <p class="text-lg font-bold text-white">Reservación Confirmada</p>
+          <img alt="Un código QR en blanco y negro para confirmar la reservación" class="w-48 h-48 rounded-lg bg-white p-2" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=FESTA-RESERVA-12345" />
+          <p class="text-center text-text-secondary-dark text-sm max-w-xs">Muestra este código QR al anfitrión al llegar. ¡Te esperamos!</p>
+          <div class="w-full border-t border-border-dark my-2"></div>
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white font-medium">Fecha</p>
+            <p class="text-text-secondary-dark" id="conf-date">Dec 24, 2024</p>
+          </div>
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white font-medium">Hora</p>
+            <p class="text-text-secondary-dark" id="conf-time">7:30 PM</p>
+          </div>
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white font-medium">Personas</p>
+            <p class="text-text-secondary-dark" id="conf-guests">2 Personas</p>
+          </div>
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white font-medium">Zona</p>
+            <p class="text-text-secondary-dark" id="conf-vibe">Terraza</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="orders-content" class="tab-content px-4 pt-2 pb-6 hidden">
+      <h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-left pb-3 pt-4">Pedir y Pagar</h1>
+      <div class="space-y-4">
+        <div class="flex flex-col gap-4 bg-card-dark p-4 rounded-xl border border-border-dark">
+          <p class="text-white font-bold text-lg">Menú Digital</p>
+          <p class="text-text-secondary-dark text-sm">Explora nuestro menú completo y haz tu pedido directamente desde tu teléfono. Perfecto para comer aquí o para llevar.</p>
+          <button class="w-full h-12 bg-primary/20 rounded-xl text-primary font-bold text-white flex items-center justify-center border border-primary transition-transform active:scale-95">
+            <a href="menu.html" class="w-full h-12 bg-primary/20 rounded-xl text-primary font-bold text-white flex items-center justify-center border border-primary transition-transform active:scale-95">
+            Ver Menú y Pedir
+            </a>
+          </button>
+        </div>
+        <div class="flex flex-col gap-4 bg-card-dark p-4 rounded-xl border border-border-dark">
+          <p class="text-white font-bold text-lg">Pagos</p>
+          <p class="text-text-secondary-dark text-sm">Al terminar, paga tu cuenta de forma segura en la app. Aceptamos los siguientes métodos de pago:</p>
+          <div class="flex items-center justify-center gap-4 py-2">
+            <div class="flex items-center justify-center h-10 w-16 bg-white/10 rounded-lg text-white font-semibold">Visa</div>
+            <div class="flex items-center justify-center h-10 w-16 bg-white/10 rounded-lg text-white font-semibold">Yape</div>
+            <div class="flex items-center justify-center h-10 w-16 bg-white/10 rounded-lg text-white font-semibold">Plin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <nav class="fixed bottom-0 left-0 right-0 z-20 mx-auto max-w-md border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex h-20 items-center justify-around">
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="home.html" aria-label="Inicio">
+        <span class="material-symbols-outlined text-2xl">home</span>
+        <span class="text-xs">Inicio</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="menu.html" aria-label="Menú">
+        <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+        <span class="text-xs">Menú</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="eventos.html" aria-label="Eventos">
+        <span class="material-symbols-outlined text-2xl">calendar_month</span>
+        <span class="text-xs">Eventos</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-primary" href="reservacion.html" aria-current="page" aria-label="Reservar">
+        <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">book_online</span>
+        <span class="text-xs font-bold">Reservar</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Perfil.html" aria-label="Perfil">
+        <span class="material-symbols-outlined text-2xl">person</span>
+        <span class="text-xs">Perfil</span>
+      </a>
+    </div>
+  </nav>
+
+</div>
+
+<script>
+  // --- Estado de la reserva (para demo) ---
+  let selectedTime = '7:30 PM';
+  let selectedVibe = 'Terraza';
+  let selectedGuests = '2';
+  let selectedDate = 'Dec 24, 2024';
+
+  // --- Selección de Hora ---
+  const timeButtons = document.querySelectorAll('.time-slot-btn');
+  timeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Quitar activo a todos
+      timeButtons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('bg-card-dark', 'text-text-secondary-dark');
+      });
+      // Poner activo al clickeado
+      button.classList.add('bg-primary', 'text-white');
+      button.classList.remove('bg-card-dark', 'text-text-secondary-dark');
+      // Guardar valor
+      selectedTime = button.textContent;
+    });
+  });
+
+  // --- Selección de Ambiente (Vibe) ---
+  const vibeCards = document.querySelectorAll('.vibe-card');
+  vibeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // Quitar activo a todos
+      vibeCards.forEach(c => {
+        c.classList.remove('border-primary', 'bg-primary/20', 'text-white');
+        c.classList.add('border-border-dark', 'bg-card-dark', 'text-text-secondary-dark');
+      });
+      // Poner activo al clickeado
+      card.classList.add('border-primary', 'bg-primary/20', 'text-white');
+      card.classList.remove('border-border-dark', 'bg-card-dark', 'text-text-secondary-dark');
+      // Guardar valor
+      selectedVibe = card.querySelector('p').textContent;
+    });
+  });
+
+  // --- Lógica de Pestañas (Tabs) ---
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const resTabBtn = document.getElementById('reservations-tab-btn');
+  const ordTabBtn = document.getElementById('orders-tab-btn');
+  const resContent = document.getElementById('reservations-content');
+  const ordContent = document.getElementById('orders-content');
+
+  resTabBtn.addEventListener('click', () => {
+    resContent.classList.remove('hidden');
+    ordContent.classList.add('hidden');
+    
+    resTabBtn.classList.add('bg-primary', 'text-white');
+    resTabBtn.classList.remove('text-text-secondary-dark');
+    ordTabBtn.classList.add('text-text-secondary-dark');
+    ordTabBtn.classList.remove('bg-primary', 'text-white');
+  });
+
+  ordTabBtn.addEventListener('click', () => {
+    ordContent.classList.remove('hidden');
+    resContent.classList.add('hidden');
+    
+    ordTabBtn.classList.add('bg-primary', 'text-white');
+    ordTabBtn.classList.remove('text-text-secondary-dark');
+    resTabBtn.classList.add('text-text-secondary-dark');
+    resTabBtn.classList.remove('bg-primary', 'text-white');
+  });
+
+  // --- Lógica de Flujo de Reserva (Form -> Confirmación) ---
+  const findTableBtn = document.getElementById('find-table-btn');
+  const resForm = document.getElementById('reservation-form');
+  const resConf = document.getElementById('reservation-confirmation');
+  
+  findTableBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevenir que el form se envíe
+    
+    // Opcional: leer valores de los inputs
+    const dateValue = document.getElementById('res-date').value;
+    if (dateValue) selectedDate = new Date(dateValue + 'T00:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+    
+    const guestsValue = document.getElementById('res-guests').value;
+    if (guestsValue) selectedGuests = guestsValue;
+
+    // Actualizar texto de confirmación
+    document.getElementById('conf-date').textContent = selectedDate;
+    document.getElementById('conf-time').textContent = selectedTime;
+    document.getElementById('conf-vibe').textContent = selectedVibe;
+    document.getElementById('conf-guests').textContent = `${selectedGuests} Personas`;
+
+    // Ocultar formulario y mostrar confirmación
+    resForm.classList.add('hidden');
+    resConf.classList.remove('hidden');
+    
+    // Scroll al inicio de la página para ver la confirmación
+    window.scrollTo(0, 0);
+  });
+</script>
+
+</body>
+</html>

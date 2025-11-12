@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Restobar</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411",
+              "card-dark": "#1E1E1E",
+              "text-primary-dark": "#F5F5F5",
+              "text-secondary-dark": "#A9A9A9",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      /* Estilo base para iconos */
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      
+      /* NOTA DE LIMPIEZA: 
+         Consolidados los 3 <style> duplicados y actualizado a 100dvh.
+      */
+      body {
+        min-height: 100dvh;
+      }
+      
+      /* FUNCIÓN LLAMATIVA: "Scroll Snapping"
+        Esto hace que los carruseles horizontales se "ajusten" a cada tarjeta 
+        al deslizar, una sensación muy profesional de app nativa.
+      */
+      .snap-x-mandatory {
+        scroll-snap-type: x mandatory;
+      }
+      .snap-start {
+        scroll-snap-align: start;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<!-- Fondo -->
+  <div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+      style="background-image: url('images/FestaFrontal.webp');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+  </div>
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+
+    <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+      <img src="images/logoFesta.png" alt="FESTA" class="h-12 sm:h-12 object-contain" />
+      
+      <button type="button" aria-label="Notificaciones" 
+              class="flex cursor-pointer items-center justify-center rounded-full text-text-primary-dark transition-transform active:scale-90">
+        <span class="material-symbols-outlined text-2xl">notifications</span>
+      </button>
+    </header>
+
+    <main class="flex-1 pb-24">
+    
+      <section class="pt-4">
+        <h2 class="px-4 pb-3 text-[22px] font-bold leading-tight tracking-[-0.015em] text-text-primary-dark">Promociones del día</h2>
+        
+        <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x-mandatory">
+          <div class="flex items-stretch gap-4 px-4">
+            
+            <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+              <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
+                   role="img" aria-label="Dos cócteles coloridos en la barra de un bar."
+                   style='background-image: url("images/CoctelesFesta.jpg");'></div>
+              <div class="flex flex-1 flex-col justify-between p-4 pt-1">
+                <div>
+                  <p class="text-base font-bold leading-normal text-text-primary-dark">2x1 en Cocktails</p>
+                  <p class="text-sm font-normal leading-normal text-text-secondary-dark">Toda la noche</p>
+                </div>
+              </div>
+            </a>
+            
+            <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+              <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
+                   role="img" aria-label="Hamburguesa gourmet con papas fritas."
+                   style='background-image: url("images/HamburquesaFesta.webp");'></div>
+              <div class="flex flex-1 flex-col justify-between p-4 pt-1">
+                <div>
+                  <p class="text-base font-bold leading-normal text-text-primary-dark">Burger Fest</p>
+                  <p class="text-sm font-normal leading-normal text-text-secondary-dark">Con tu primera bebida</p>
+                </div>
+              </div>
+            </a>
+            
+            <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+              <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
+                   role="img" aria-label="Torta de chocolate fundido (lava cake)."
+                   style='background-image: url("images/PostresFesta.jpg");'></div>
+              <div class="flex flex-1 flex-col justify-between p-4 pt-1">
+                <div>
+                  <p class="text-base font-bold leading-normal text-text-primary-dark">Postres a Mitad de Precio</p>
+                  <p class="text-sm font-normal leading-normal text-text-secondary-dark">Después de las 11 PM</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 pt-8">
+        <h2 class="pb-3 text-[22px] font-bold leading-tight tracking-[-0.015em] text-text-primary-dark">Próximos Eventos</h2>
+        <div class="flex flex-col gap-4">
+        
+          <div class="flex items-stretch justify-between gap-4 rounded-lg bg-card-dark/80 p-4 shadow-lg transition-shadow hover:shadow-x1">
+            <div class="flex flex-[2_2_0px] flex-col justify-center gap-2">
+              <p class="text-sm font-medium leading-normal text-primary">Este Viernes, 10 PM</p>
+              <p class="text-lg font-bold leading-tight text-text-primary-dark">DJ TAVO - Live Set</p>
+              <p class="text-sm font-normal leading-normal text-text-secondary-dark">No te pierdas la mejor música en vivo.</p>
+              <button type="button" class="mt-2 flex w-fit cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-4 py-2 text-sm font-bold leading-normal text-white transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+                <span class="truncate">Reservar ahora</span>
+              </button>
+            </div>
+            <div class="aspect-square w-24 flex-shrink-0 rounded-lg bg-cover bg-center bg-no-repeat" 
+                 role="img" aria-label="Retrato de una DJ con audífonos en FESTA."
+                 style='background-image: url("images/DJenvivo2.webp");'></div>
+          </div>
+          
+          <div class="flex items-stretch justify-between gap-4 rounded-lg bg-card-dark/80 p-4 shadow-lg transition-shadow hover:shadow-xl">
+            <div class="flex flex-[2_2_0px] flex-col justify-center gap-2">
+              <p class="text-sm font-medium leading-normal text-primary">Sábado 22, 9 PM</p>
+              <p class="text-lg font-bold leading-tight text-text-primary-dark">Noche Acústica</p>
+              <p class="text-sm font-normal leading-normal text-text-secondary-dark">Melodías suaves para una velada perfecta.</p>
+              <button type="button" class="mt-2 flex w-fit cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-primary/70 px-4 py-2 text-sm font-bold leading-normal text-white/50 transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+                <span class="truncate">Ver más</span>
+              </button>
+            </div>
+            <div class="aspect-square w-24 flex-shrink-0 rounded-lg bg-cover bg-center bg-no-repeat" 
+                 role="img" aria-label="Persona tocando guitarra acústica en un escenario."
+                 style='background-image: url("images/AcusticaFesta.jpg");'></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pt-8">
+        <h2 class="px-4 pb-3 text-[22px] font-bold leading-tight tracking-[-0.015em] text-text-primary-dark">Descubre Nuestro Sabor</h2>
+        
+        <div class="grid grid-cols-2 gap-2 px-4">
+          <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+            <div class="absolute inset-0 bg-cover bg-center" 
+                 role="img" aria-label="Plato de sushi variado."
+                 style='background-image: url("images/SushiFesta.jpg");'></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <p class="relative z-10 p-3 font-bold text-white">Sushi Fest</p>
+          </a>
+          <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+            <div class="absolute inset-0 bg-cover bg-center" 
+                 role="img" aria-label="Plato de rspaguetti con lomo."
+                 style='background-image: url("images/Spaguetti.jpg");'></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <p class="relative z-10 p-3 font-bold text-white">Spaguetti</p>
+          </a>
+          <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+            <div class="absolute inset-0 bg-cover bg-center" 
+                 role="img" aria-label="Tacu Tacu."
+                 style='background-image: url("images/TacuTacu.jpg");'></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <p class="relative z-10 p-3 font-bold text-white">Tacu Tacu</p>
+          </a>
+          <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
+            <div class="absolute inset-0 bg-cover bg-center" 
+                 role="img" aria-label="Cocktail Mai Thai Festa."
+                 style='background-image: url("images/Mai\ Thai.jpg");'></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <p class="relative z-10 p-3 font-bold text-white">Mai Thai Festa</p>
+          </a>
+        </div>
+      </section>
+      
+      <section class="pt-8">
+        <h2 class="px-4 pb-3 text-[22px] font-bold leading-tight tracking-[-0.015em] text-text-primary-dark">Especialmente para ti</h2>
+        
+        <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x-mandatory">
+          <div class="flex items-stretch gap-4 px-4">
+            
+            <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+              <div class="aspect-square w-full rounded-full bg-cover bg-center" 
+                   role="img" aria-label="Cocktail Golden Jack."
+                   style='background-image: url("images/GoldenJack.jpg");'></div>
+              <p class="font-semibold text-text-primary-dark">Golden Jack</p>
+              <p class="text-xs text-text-secondary-dark">Porque te gustan los clásicos.</p>
+            </a>
+            
+            <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+              <div class="aspect-square w-full rounded-full bg-cover bg-center" 
+                   role="img" aria-label="Tiradito al Rocoto."
+                   style='background-image: url("images/Tiradito.jpg");'></div>
+              <p class="font-semibold text-text-primary-dark">Tiradito al Rocoto</p>
+              <p class="text-xs text-text-secondary-dark">Para acompañar tu cerveza.</p>
+            </a>
+            
+            <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+              <div class="aspect-square w-full rounded-full bg-cover bg-center" 
+                   role="img" aria-label="Postre Tiramisú en un plato."
+                   style='background-image: url("images/tiramisu.jpg");'></div>
+              <p class="font-semibold text-text-primary-dark">Tiramisú</p>
+              <p class="text-xs text-text-secondary-dark">Un dulce final.</p>
+            </a>
+
+            <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
+              <div class="aspect-square w-full rounded-full bg-cover bg-center" 
+                   role="img" aria-label="Almuerzos Ejecutivos."
+                   style='background-image: url("images/Almuerzos.jpg");'></div>
+              <p class="font-semibold text-text-primary-dark">Almuerzos</p>
+              <p class="text-xs text-text-secondary-dark">Disfruta lo mejor.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+</div> <nav classaria-label="Navegación principal" class="fixed bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+  <div class="flex h-20 items-center justify-around max-w-md mx-auto">
+    
+    <a class="flex flex-col items-center gap-1 text-primary transition-transform duration-200 ease-in-out active:scale-90" href="home.html">
+      <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
+      <span class="text-xs font-bold">Inicio</span>
+    </a>
+    
+    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="menu.html">
+      <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+      <span class="text-xs">Menú</span>
+    </a>
+    
+    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="eventos.html">
+      <span class="material-symbols-outlined text-2xl">calendar_month</span>
+      <span class="text-xs">Eventos</span>
+    </a>
+    
+    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="reservacion.html">
+      <span class="material-symbols-outlined text-2xl">book_online</span>
+      <span class="text-xs">Reservar</span>
+    </a>
+    
+    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="Perfil.html">
+      <span class="material-symbols-outlined text-2xl">person</span>
+      <span classs="text-xs">Perfil</span>
+    </a>
+  </div>
+</nav>
+
+</body>
+</html>

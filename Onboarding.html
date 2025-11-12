@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bienvenido a FESTA - Onboarding</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"], // Fallback
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            // FUNCIÓN LLAMATIVA: Animación para el texto de cada slide
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(16px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.6s ease-out',
+            }
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      /* NOTA DE LIMPIEZA: 
+         Se consolidaron los <style> duplicados y se actualizó min-height.
+      */
+      body {
+        min-height: 100dvh;
+      }
+
+      /* FUNCIÓN LLAMATIVA: 
+        Estilos para los "dots" (indicadores de página) de Swiper,
+        usando el color 'primary' de tu marca.
+      */
+      .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background-color: theme('colors.primary / 0.3');
+        opacity: 1;
+        transition: background-color 0.3s ease;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: theme('colors.primary');
+      }
+
+      /* Hacer que el contenido de texto anime en *cada* slide.
+        Swiper gestiona esto al añadir la clase 'swiper-slide-active'.
+      */
+      .swiper-slide-active .animated-text {
+        opacity: 1;
+        animation-name: fadeInUp;
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-white">
+
+  <div class="relative flex flex-col h-screen w-full group/design-root overflow-x-hidden">
+
+    <a href="home.html" class="absolute top-5 right-5 z-20 flex cursor-pointer items-center justify-center overflow-hidden h-10 px-4 bg-black/30 rounded-full text-white text-sm font-bold leading-normal tracking-[0.015em] backdrop-blur-sm transition-opacity hover:opacity-80">
+      <span class="truncate">Omitir</span>
+    </a>
+
+    <div class="swiper h-full w-full">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide flex flex-col">
+          <div class="flex-shrink-0 h-3/5">
+            <div class="bg-cover bg-center flex flex-col justify-end w-full h-full relative" 
+                 style='background-image: linear-gradient(0deg, rgba(33, 20, 17, 1) 0%, rgba(33, 20, 17, 0) 40%), url("images/FestaFrontal.webp");'>
+              </div>
+          </div>
+          <div class="flex-grow flex flex-col justify-center text-center px-6">
+            <h2 class="animated-text text-3xl font-bold text-white tracking-tight opacity-0" style="animation-delay: 0.2s;">
+              Bienvenido a FESTA
+            </h2>
+            <p class="animated-text text-white/80 text-base font-normal leading-normal pt-3 opacity-0" style="animation-delay: 0.4s;">
+              Tu app para reservaciones fáciles, promociones exclusivas y eventos de fin de semana.
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide flex flex-col">
+          <div class="flex-shrink-0 h-3/5">
+            <div class="bg-cover bg-center flex flex-col justify-end w-full h-full relative" 
+                 style='background-image: linear-gradient(0deg, rgba(33, 20, 17, 1) 0%, rgba(33, 20, 17, 0) 60%), url("images/ClienteFesta.jpg");'>
+            </div>
+          </div>
+          <div class="flex-grow flex flex-col justify-center text-center px-6">
+            <h2 class="animated-text text-3xl font-bold text-white tracking-tight opacity-0">
+              Reserva en Segundos
+            </h2>
+            <p class="animated-text text-white/80 text-base font-normal leading-normal pt-3 opacity-0">
+              Elige tu fecha, hora y número de personas. Nosotros nos encargamos del resto.
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide flex flex-col">
+          <div class="flex-shrink-0 h-3/5">
+            <div class="bg-cover bg-center flex flex-col justify-end w-full h-full relative" 
+                 style='background-image: linear-gradient(0deg, rgba(33, 20, 17, 1) 0%, rgba(33, 20, 17, 0) 40%), url("https://scontent.flim4-2.fna.fbcdn.net/v/t51.82787-15/517369275_18011848658760160_5610007342200312679_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE0rhPnUQgT9xfXnbm0Vq7jctA_QZmgeV9y0D9BmaB5X6SS_Pg5E5-Qjf57QYKeYROg68nm3sy0itpDUh812b_b&_nc_ohc=zdjk7DYkLD0Q7kNvwF3E9RD&_nc_oc=AdkxclM-vHae7MIA2-2n9ikFsFjM6SrkqvIpltwrUITiLusTEjYxIN9ug010QlxyTf8&_nc_zt=23&_nc_ht=scontent.flim4-2.fna&_nc_gid=yiq21IV9z5_b1tjgQTOOhA&oh=00_AfhmC6z3DN51HsrS0rpWJOnNdDAkuBszz4ymZ_75meuN_g&oe=69198DEB");'>
+            </div>
+          </div>
+          <div class="flex-grow flex flex-col justify-center text-center px-6">
+            <h2 class="animated-text text-3xl font-bold text-white tracking-tight opacity-0">
+              Gana Recompensas
+            </h2>
+            <p class="animated-text text-white/80 text-base font-normal leading-normal pt-3 opacity-0">
+              Únete a nuestro programa de lealtad y obtén beneficios exclusivos en cada visita.
+            </p>
+          </div>
+        </div>
+
+      </div> </div> <footer class="flex-shrink-0 w-full flex-col items-center px-4 pb-8 pt-4 z-10">
+      <div class="swiper-pagination mb-6 flex w-full flex-row items-center justify-center gap-2"></div>
+      
+      <div class="flex w-full max-w-md mx-auto">
+        
+        <button id="next-button" class="flex flex-1 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] transition-all duration-300 ease-in-out hover:shadow-lg button-glow hover:scale-[1.03] active:scale-[0.98]">
+          <span class="truncate">Siguiente</span>
+        </button>
+        
+        <a href="home.html" id="finish-button" class="hidden flex-1 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] transition-all duration-300 ease-in-out hover:shadow-lg button-glow hover:scale-[1.03] active:scale-[0.98]">
+          <span class="flex items-center justify-center w-full h-full">Comenzar</span>
+        </a>
+
+      </div>
+    </footer>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <script>
+    // --- Inicialización de Swiper ---
+    const swiper = new Swiper('.swiper', {
+      // Opciones
+      loop: false, // No queremos que sea un loop infinito en el onboarding
+      
+      // Indicadores de página (dots)
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true, // Permite hacer clic en los dots para navegar
+      },
+    });
+
+    // --- Lógica de botones dinámicos ---
+    const nextButton = document.getElementById('next-button');
+    const finishButton = document.getElementById('finish-button');
+
+    // Escuchar el evento 'slideChange'
+    swiper.on('slideChange', function () {
+      // si swiper.isEnd es verdadero (es el último slide)
+      if (swiper.isEnd) {
+        nextButton.classList.add('hidden'); // Ocultar "Siguiente"
+        finishButton.classList.remove('hidden'); // Mostrar "Comenzar"
+      } else {
+        nextButton.classList.remove('hidden'); // Mostrar "Siguiente"
+        finishButton.classList.add('hidden'); // Ocultar "Comenzar"
+      }
+    });
+
+    // Conectar el botón "Siguiente" al slider
+    nextButton.addEventListener('click', () => {
+      swiper.slideNext(); // Avanza al siguiente slide
+    });
+  </script>
+</body>
+</html>

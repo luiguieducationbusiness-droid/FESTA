@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Eventos</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411", // <-- Color unificado
+              "card-dark": "#1E1E1E",     // <-- Color unificado
+              "text-primary-dark": "#F5F5F5",
+              "text-secondary-dark": "#A9A9A9",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 24px;
+      }
+      /* NOTA DE LIMPIEZA: Estilos consolidados */
+      body {
+        min-height: 100dvh;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<!-- Fondo -->
+  <div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+      style="background-image: url('images/FestaFrontal.webp');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+  </div> 
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+
+  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <img src="images/logoFesta.png" alt="FESTA" class="h-12 sm:h-12 object-contain" />
+    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Ver notificaciones">
+      <span class="material-symbols-outlined text-2xl">notifications</span>
+    </button>
+  </header>
+  
+  <main class="flex-1 pb-28">
+    
+    <div class="px-4 py-3">
+      <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
+        <button id="upcoming-tab-btn" class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 bg-primary text-white text-sm font-medium">
+          Próximos
+        </button>
+        <button id="past-tab-btn" class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium">
+          Eventos Pasados
+        </button>
+      </div>
+    </div>
+    
+    <div id="upcoming-content" class="tab-content flex flex-col gap-4 px-4 pb-4">
+      
+      <article class="flex flex-col items-stretch justify-start rounded-xl bg-card-dark/80 overflow-hidden shadow-lg shadow-black/20">
+        <div class="relative w-full">
+          <img src="images/DJenvivo2.webp" 
+               alt="DJ TAVO - Live Set"
+               class="w-full h-full aspect-video object-cover">
+          <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">Este Viernes - 10:00 PM</div>
+        </div>
+        <div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-4">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">DJ TAVO - Live Set</h2>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal">
+              Música: Soundtrack Actual | Código de Vestir: Casual
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(94,26,13,0.6)] transition-all active:scale-95">
+              <span class="truncate">Comprar Tickets</span>
+            </button>
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all active:scale-95">
+              <span class="truncate">Reservar VIP</span>
+            </button>
+            <button class="notify-btn flex min-w-[40px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-2 bg-transparent text-text-secondary-dark text-sm font-bold leading-normal tracking-[0.015em] border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                    aria-label="Recibir notificación">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="flex flex-col items-stretch justify-start rounded-xl bg-card-dark/80 overflow-hidden shadow-lg shadow-black/20">
+        <div class="relative w-full">
+          <img src="images/AcusticaFesta.jpg" 
+               alt="Noche Acústica con guitarra y micrófono"
+               class="w-full h-full aspect-video object-cover">
+          <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">SÁB, 22 NOV - 9:00 PM</div>
+        </div>
+        <div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-4">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">Noche Acústica</h2>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal">
+              Música: Soundtrack Clásicos | Código de Vestir: Casual
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(94,26,13,0.6)] transition-all active:scale-95">
+              <span class="truncate">Comprar Tickets</span>
+            </button>
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all active:scale-95">
+              <span class="truncate">Reservar VIP</span>
+            </button>
+            <button class="notify-btn flex min-w-[40px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-2 bg-transparent text-text-secondary-dark text-sm font-bold leading-normal tracking-[0.015em] border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                    aria-label="Recibir notificación">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="flex flex-col items-stretch justify-start rounded-xl bg-card-dark/80 overflow-hidden shadow-lg shadow-black/20">
+        <div class="relative w-full">
+          <img src="images/FiestaNeon.jpg" 
+               alt="DJ Luma actuando con luces de neón en el fondo"
+               class="w-full h-full aspect-video object-cover">
+          <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">SÁB, 28 NOV - 10:00 PM</div>
+        </div>
+        <div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-4">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">Noches de Neón ft. DJ Luma</h2>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal">
+              Música: Deep House | Código de Vestir: Smart Casual
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(94,26,13,0.6)] transition-all active:scale-95">
+              <span class="truncate">Comprar Tickets</span>
+            </button>
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all active:scale-95">
+              <span class="truncate">Reservar VIP</span>
+            </button>
+            <button class="notify-btn flex min-w-[40px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-2 bg-transparent text-text-secondary-dark text-sm font-bold leading-normal tracking-[0.015em] border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                    aria-label="Recibir notificación">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="flex flex-col items-stretch justify-start rounded-xl bg-card-dark/80 overflow-hidden shadow-lg shadow-black/20">
+        <div class="relative w-full">
+          <img src="images/Fiesta80s.png" 
+               alt="Fiesta temática de los 80 con bolas de discoteca"
+               class="w-full h-full aspect-video object-cover">
+          <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">VIE, 04 DIC - 9:00 PM</div>
+        </div>
+        <div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-4">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">Fiesta 80s Rewind</h2>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal">
+              Música: 80s Pop | Código de Vestir: Retro Glam
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(94,26,13,0.6)] transition-all active:scale-95">
+              <span class="truncate">Comprar Tickets</span>
+            </button>
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all active:scale-95">
+              <span class="truncate">Reservar VIP</span>
+            </button>
+            <button class="notify-btn flex min-w-[40px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-2 bg-transparent text-text-secondary-dark text-sm font-bold leading-normal tracking-[0.015em] border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                    aria-label="Recibir notificación">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    
+    <div id="past-content" class="tab-content hidden flex-col gap-4 px-4 pb-4">
+      
+      <article class="flex flex-col items-stretch justify-start rounded-xl bg-card-dark/80 overflow-hidden shadow-lg shadow-black/10 opacity-80">
+        <div class="relative w-full">
+          <img src="images/HalloweenFesta.jpg" 
+               alt="Evento Halloween con decoración temática"
+               class="w-full h-full aspect-video object-cover">
+          <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">SÁB, 1 NOV - 10:00 PM</div>
+        </div>
+        <div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-4">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">Halloween Party</h2>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal">
+              Música: Soundtrack Clásicos | Código de Vestir: Disfraz
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex flex-1 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em]" disabled>
+              <span class="truncate">Finalizado</span>
+            </button>
+          </div>
+        </div>
+      </article>
+      
+    </div>
+    
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 z-20 mx-auto max-w-md border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex h-20 items-center justify-around">
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="home.html" aria-label="Inicio">
+        <span class="material-symbols-outlined text-2xl">home</span>
+        <span class="text-xs">Inicio</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="menu.html" aria-label="Menú">
+        <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+        <span class="text-xs">Menú</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-primary" href="eventos.html" aria-current="page" aria-label="Eventos">
+        <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+        <span class="text-xs font-bold">Eventos</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="reservacion.html" aria-label="Reservar">
+        <span class="material-symbols-outlined text-2xl">book_online</span>
+        <span class="text-xs">Reservar</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Perfil.html" aria-label="Perfil">
+        <span class="material-symbols-outlined text-2xl">person</span>
+        <span class="text-xs">Perfil</span>
+      </a>
+    </div>
+  </nav>
+  
+</div>
+
+<script>
+  // --- Lógica de Pestañas (Tabs) ---
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const upcomingTabBtn = document.getElementById('upcoming-tab-btn');
+  const pastTabBtn = document.getElementById('past-tab-btn');
+  const upcomingContent = document.getElementById('upcoming-content');
+  const pastContent = document.getElementById('past-content');
+
+  upcomingTabBtn.addEventListener('click', () => {
+    upcomingContent.classList.remove('hidden');
+    pastContent.classList.add('hidden');
+    
+    upcomingTabBtn.classList.add('bg-primary', 'text-white');
+    upcomingTabBtn.classList.remove('text-text-secondary-dark');
+    pastTabBtn.classList.add('text-text-secondary-dark');
+    pastTabBtn.classList.remove('bg-primary', 'text-white');
+  });
+
+  pastTabBtn.addEventListener('click', () => {
+    pastContent.classList.remove('hidden');
+    upcomingContent.classList.add('hidden');
+    
+    pastTabBtn.classList.add('bg-primary', 'text-white');
+    pastTabBtn.classList.remove('text-text-secondary-dark');
+    upcomingTabBtn.classList.add('text-text-secondary-dark');
+    upcomingTabBtn.classList.remove('bg-primary', 'text-white');
+  });
+
+  // --- FUNCIÓN LLAMATIVA: Lógica del Botón "Notificar" ---
+  const notifyButtons = document.querySelectorAll('.notify-btn');
+  
+  notifyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const icon = button.querySelector('.material-symbols-outlined');
+      
+      // Comprobar si ya está activado
+      const isToggled = button.classList.toggle('toggled');
+      
+      if (isToggled) {
+        // Estado Activo
+        icon.textContent = 'notifications_active';
+        icon.classList.add('text-primary'); // Usar color 'primary'
+        icon.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+      } else {
+        // Estado Inactivo
+        icon.textContent = 'notifications';
+        icon.classList.remove('text-primary');
+        icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

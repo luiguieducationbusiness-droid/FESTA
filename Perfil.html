@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Mi Perfil</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411", // <-- Color unificado
+              "card-dark": "#1E1E1E",     // <-- Color unificado
+              "text-primary-dark": "#F5F5F5",
+              "text-secondary-dark": "#A9A9A9",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        min-height: 100dvh;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<!-- Fondo -->
+  <div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+      style="background-image: url('images/FestaFrontal.webp');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+  </div> 
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+  
+  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <h1 class="text-xl font-bold leading-tight tracking-tighter text-text-primary-dark">Mi Perfil</h1>
+    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Configuración">
+      <span class="material-symbols-outlined text-2xl">settings</span>
+    </button>
+  </header>
+  
+  <main class="flex-1 space-y-6 pb-28">
+    
+    <section class="flex flex-col items-center gap-3 px-4 pt-4">
+      <img class="aspect-square w-24 h-24 rounded-full border-2 border-primary object-cover" 
+           alt="Foto de perfil de Ana Rodriguez" 
+           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDh8fHdvbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzMwMTI4Njk2fDA&ixid=rb-4.0.3&q=80&w=200"/>
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-text-primary-dark">Ana Rodriguez</h2>
+        <p class="text-sm text-text-secondary-dark">ana.rodriguez@email.com</p>
+      </div>
+      <a href="#" class="text-sm font-medium text-primary transition-opacity hover:opacity-80">
+        Editar Perfil
+      </a>
+    </section>
+    
+    <section class="px-4">
+      <a href="Usuario.html" class="flex w-full items-center justify-between rounded-xl bg-card-dark p-4 shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.03]">
+        <div class="flex-1">
+          <p class="text-sm font-bold text-primary">FESTA POINTS</p>
+          <p class="text-lg font-bold text-text-primary-dark">Miembro PLATA</p>
+          <div class="mt-2">
+            <div class="h-1.5 w-full rounded-full bg-black/30">
+              <div class="h-1.5 rounded-full bg-primary" style="width: 65%;"></div>
+            </div>
+            <p class="mt-1 text-xs text-text-secondary-dark">1300 / 2000 pts</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-text-secondary-dark">chevron_right</span>
+      </a>
+    </section>
+
+    <section class="px-4">
+      <div class="flex flex-col gap-2">
+        
+        <h3 class="px-2 text-sm font-semibold uppercase text-text-secondary-dark">Mi Actividad</h3>
+        
+        <a href="#" class="flex items-center gap-4 rounded-lg bg-card-dark p-4 transition-colors hover:bg-white/5">
+          <span class="material-symbols-outlined text-text-secondary-dark">history</span>
+          <span class="flex-1 text-text-primary-dark">Mis Reservaciones</span>
+          <span class="material-symbols-outlined text-text-secondary-dark">chevron_right</span>
+        </a>
+        
+        <a href="#" class="flex items-center gap-4 rounded-lg bg-card-dark p-4 transition-colors hover:bg-white/5">
+          <span class="material-symbols-outlined text-text-secondary-dark">confirmation_number</span>
+          <span class="flex-1 text-text-primary-dark">Mis Tickets de Eventos</span>
+          <span class="material-symbols-outlined text-text-secondary-dark">chevron_right</span>
+        </a>
+
+        <h3 class="mt-4 px-2 text-sm font-semibold uppercase text-text-secondary-dark">Cuenta</h3>
+        
+        <a href="#" class="flex items-center gap-4 rounded-lg bg-card-dark p-4 transition-colors hover:bg-white/5">
+          <span class="material-symbols-outlined text-text-secondary-dark">credit_card</span>
+          <span class="flex-1 text-text-primary-dark">Métodos de Pago</span>
+          <span class="material-symbols-outlined text-text-secondary-dark">chevron_right</span>
+        </a>
+        
+        <a href="#" class="flex items-center gap-4 rounded-lg bg-card-dark p-4 transition-colors hover:bg-white/5">
+          <span class="material-symbols-outlined text-text-secondary-dark">help_outline</span>
+          <span class="flex-1 text-text-primary-dark">Ayuda y Soporte</span>
+          <span class="material-symbols-outlined text-text-secondary-dark">chevron_right</span>
+        </a>
+      </div>
+    </section>
+    
+    <section class="px-4 pt-4">
+      <button class="flex w-full items-center justify-center gap-3 rounded-lg bg-card-dark p-4 font-bold text-red-500 transition-colors hover:bg-red-800/20">
+        <span class="material-symbols-outlined">logout</span>
+        <a href="index.html">
+        <span>Cerrar Sesión</span>
+        </a>
+      </button>
+    </section>
+    
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 z-20 mx-auto max-w-md border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex h-20 items-center justify-around">
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="home.html" aria-label="Inicio">
+        <span class="material-symbols-outlined text-2xl">home</span>
+        <span class="text-xs">Inicio</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="menu.html" aria-label="Menú">
+        <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+        <span class="text-xs">Menú</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="eventos.html" aria-label="Eventos">
+        <span class="material-symbols-outlined text-2xl">calendar_month</span>
+        <span class="text-xs">Eventos</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="reservacion.html" aria-label="Reservar">
+        <span class="material-symbols-outlined text-2xl">book_online</span>
+        <span class="text-xs">Reservar</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-primary" href="perfil.html" aria-current="page" aria-label="Perfil">
+        <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">person</span>
+        <span class="text-xs font-bold">Perfil</span>
+      </a>
+    </div>
+  </nav>
+  
+</div>
+
+</body>
+</html>

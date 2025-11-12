@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Acceso - FESTA</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411",
+              // Colores de formulario para modo oscuro
+              "dark-field": "rgba(255, 255, 255, 0.05)",
+              "dark-field-focus": "rgba(255, 255, 255, 0.1)"
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .text-glow {
+        text-shadow: 0 0 8px theme('colors.primary'), 0 0 20px theme('colors.primary / 0.5');
+      }
+      .button-glow {
+        box-shadow: 0 0 12px theme('colors.primary / 0.8'), 0 0 24px theme('colors.primary / 0.4');
+      }
+      body {
+        min-height: 100dvh;
+      }
+      /* Estilo para los iconos de Material Symbols */
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-white">
+
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    
+    <div class="absolute inset-0 z-0">
+      <div class="w-full h-full bg-center bg-no-repeat bg-cover opacity-30" 
+           style='background-image: url("images/FestaFrontal.webp");'
+           aria-hidden="true"
+           role="img">
+      </div>
+    </div>
+
+    <div class="relative z-10 flex min-h-screen w-full flex-col p-4">
+
+      <header class="flex-none flex items-center justify-between pt-4 pb-6">
+        <a href="index.html" class="p-2 -ml-2 rounded-full text-white hover:bg-white/10 transition-colors" aria-label="Volver">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+       <img src="images/logoFesta.png" alt="FESTA" class="mx-auto w-36 sm:w-48 animate-fade-in-up" />
+        <div class="w-8"></div> </header>
+
+      <main class="flex-grow flex flex-col justify-start pb-8">
+        <div class="w-full max-w-md mx-auto">
+          
+          <div class="flex border-b border-white/20 mb-6">
+            <button id="login-tab-btn" 
+                    class="tab-btn flex-1 py-3 text-center font-bold border-b-2 border-primary text-white transition-all" 
+                    data-target="login-form">
+              Iniciar Sesión
+            </button>
+            <button id="register-tab-btn" 
+                    class="tab-btn flex-1 py-3 text-center font-bold border-b-2 border-transparent text-white/50 transition-all" 
+                    data-target="register-form">
+              Registrarse
+            </button>
+          </div>
+
+          <div id="login-form" class="tab-content">
+            <form action="Onboarding.html" class="flex flex-col gap-5">
+              
+              <div class="relative">
+                <label for="login-email" class="absolute -top-2 left-3 px-1 text-xs text-white/70 bg-background-dark">Email</label>
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50">
+                  alternate_email
+                </span>
+                <input type="email" id="login-email" name="email" 
+                       class="w-full h-14 pl-12 pr-4 bg-dark-field border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:bg-dark-field-focus transition-all"
+                       placeholder="tu@email.com">
+              </div>
+              
+              <div class="relative">
+                <label for="login-pass" class="absolute -top-2 left-3 px-1 text-xs text-white/70 bg-background-dark">Contraseña</label>
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50">
+                  lock
+                </span>
+                <input type="password" id="login-pass" name="password" 
+                       class="w-full h-14 pl-12 pr-12 bg-dark-field border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:bg-dark-field-focus transition-all"
+                       placeholder="••••••••">
+                <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50" 
+                        onclick="togglePassword('login-pass', this)">
+                  <span class="material-symbols-outlined" data-icon="visibility_off">visibility_off</span>
+                </button>
+              </div>
+              
+              <a href="#" class="text-right text-sm text-white/70 hover:text-white transition-colors">
+                ¿Olvidaste tu contraseña?
+              </a>
+              
+              <button type="submit" 
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] w-full transition-all duration-300 ease-in-out hover:shadow-lg button-glow hover:scale-[1.03] active:scale-[0.98]">
+                <span class="truncate">Iniciar Sesión</span>
+              </button>
+            </form>
+          </div>
+
+          <div id="register-form" class="tab-content hidden">
+            <form action="#" class="flex flex-col gap-5">
+              
+              <div class="relative">
+                <label for="reg-name" class="absolute -top-2 left-3 px-1 text-xs text-white/70 bg-background-dark">Nombre Completo</label>
+                <span class="material-symbols-outlined absolute left-4 top-1/3 -translate-y-1/2 text-white/50">
+                  person
+                </span>
+                <input type="text" id="reg-name" name="name" 
+                       class="w-full h-14 pl-12 pr-4 bg-dark-field border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:bg-dark-field-focus transition-all"
+                       placeholder="Tu Nombre">
+              </div>
+
+              <div class="relative">
+                <label for="login-email" class="absolute -top-2 left-3 px-1 text-xs text-white/70 bg-background-dark">Email</label>
+                <span class="material-symbols-outlined absolute left-4 top-1/3 -translate-y-1/2 text-white/50">
+                  alternate_email
+                </span>
+                <input type="email" id="login-email" name="email" 
+                       class="w-full h-14 pl-12 pr-4 bg-dark-field border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:bg-dark-field-focus transition-all"
+                       placeholder="tu@email.com">
+              </div>
+              
+              <div class="relative">
+                <label for="reg-pass" class="absolute -top-2 left-3 px-1 text-xs text-white/70 bg-background-dark">Crear Contraseña</label>
+                <span class="material-symbols-outlined absolute left-4 top-1/3 -translate-y-1/2 text-white/50">
+                  lock
+                </span>
+                <input type="password" id="reg-pass" name="password" 
+                       class="w-full h-14 pl-12 pr-12 bg-dark-field border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-primary focus:ring-1 focus:ring-primary focus:bg-dark-field-focus transition-all"
+                       placeholder="Mín. 8 caracteres">
+                <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50" 
+                        onclick="togglePassword('reg-pass', this)">
+                  <span class="material-symbols-outlined" data-icon="visibility_off">visibility_off</span>
+                </button>
+              </div>
+              
+              <button type="submit" 
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] w-full transition-all duration-300 ease-in-out hover:shadow-lg button-glow hover:scale-[1.03] active:scale-[0.98]">
+                <span class="truncate">Crear Cuenta</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="relative flex items-center justify-center my-8">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-white/20"></div>
+            </div>
+            <div class="relative px-4 bg-background-dark text-sm text-white/70">
+              O continúa con
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-transparent border border-white/50 text-white text-base font-bold leading-normal w-full hover:bg-white/10 transition-colors duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98] gap-3">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="w-5 h-5">
+              <span class="truncate">Iniciar con Google</span>
+            </button>
+            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-white text-black text-base font-bold leading-normal w-full hover:bg-white/80 transition-colors duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98] gap-3">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M8.28,1.96C9.17,1.94,10.22,2.5,10.9,3.3c-0.72,0.66-1.12,1.64-1.07,2.78c0.04,1.14,0.76,2.15,1.55,2.74c-0.7,0.8-1.55,1.14-2.43,1.14c-1.3,0-2.3-0.81-3.03-2.02c-1.25,0-2.61,0.77-3.37,2.02c-0.9,1.46-0.61,3.95,0.78,5.32c0.7,0.7,1.63,1.04,2.57,1.06c0.04,0,0.08,0,0.12,0c1.1,0,2.13-0.6,2.9-1.55c0.75-0.93,1.13-2.18,1.17-3.29c-1.17-0.45-2-1.44-2-2.73c-0.03-1.63,1.12-3.03,2.68-3.24c0.23-1.04-0.3-2.22-1.09-3.04C9.15,1.95,8.73,1.9,8.28,1.96z"></path><path d="M11.16,0.85c-0.62-0.7-1.56-1.08-2.58-1.08c-0.12,0-0.24,0-0.36,0.01C7.2,0.11,6.2,0.61,5.55,1.38c0.68,0.63,1.12,1.57,1.07,2.64c-0.04,1.07-0.72,2.02-1.5,2.57c0.47,0.68,1.22,1.02,2.01,1.02c1.43,0,2.52-0.89,3.17-2.18c1.16-0.02,2.37,0.7,3.06,2.07c0.27,0.53,0.44,1.1,0.51,1.71c-1.89-0.56-3.41-2.06-3.41-3.95c0-2.23,1.86-4.05,4.17-4.05c0.02,0,0.05,0,0.07,0C12.3,0.92,11.53,0.73,11.16,0.85z"></path></svg>
+              <span class="truncate">Iniciar con Apple</span>
+            </button>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <script>
+    // --- Funcionalidad de Pestañas ---
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Obtener el ID del contenido
+        const targetId = button.getAttribute('data-target');
+        const targetContent = document.getElementById(targetId);
+
+        // Ocultar todo el contenido
+        tabContents.forEach(content => {
+          content.classList.add('hidden');
+        });
+
+        // Quitar estilos activos a todos los botones
+        tabButtons.forEach(btn => {
+          btn.classList.remove('border-primary', 'text-white');
+          btn.classList.add('border-transparent', 'text-white/50');
+        });
+
+        // Mostrar el contenido seleccionado
+        if (targetContent) {
+          targetContent.classList.remove('hidden');
+        }
+
+        // Aplicar estilo activo al botón seleccionado
+        button.classList.add('border-primary', 'text-white');
+        button.classList.remove('border-transparent', 'text-white/50');
+      });
+    });
+
+    // --- Funcionalidad de Mostrar/Ocultar Contraseña ---
+    function togglePassword(inputId, button) {
+      const input = document.getElementById(inputId);
+      const icon = button.querySelector('.material-symbols-outlined');
+
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "visibility";
+      } else {
+        input.type = "password";
+        icon.textContent = "visibility_off";
+      }
+    }
+  </script>
+</body>
+</html>
