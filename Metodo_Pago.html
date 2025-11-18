@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Métodos de Pago</title>
+    <link href="images/LogoFesta.ico" rel="icon" />
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                primary: "#5e1a0d",
+                "background-light": "#f8f6f6",
+                "background-dark": "#211411", // Color unificado
+                "card-dark": "#1E1E1E",     // Color unificado
+                "text-primary-dark": "#F5F5F5",
+                "text-secondary-dark": "#A9A9A9",
+                "border-dark": "#3c3c3c",
+                },
+                fontFamily: {
+                display: ["Spline Sans", "sans-serif"],
+                },
+                borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px",
+                },
+                // Animaciones
+                keyframes: {
+                slideUp: {
+                    '0%': { transform: 'translateY(100%)' },
+                    '100%': { transform: 'translateY(0)' },
+                },
+                pulseIn: {
+                    '0%, 100%': { transform: 'scale(0.9)' },
+                    '50%': { transform: 'scale(1)' },
+                }
+                },
+                animation: {
+                'slide-up': 'slideUp 0.3s ease-out forwards',
+                'pulse-in': 'pulseIn 1s ease-in-out',
+                }
+            },
+            },
+        };
+    </script>
+    
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+        min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+
+<!-- Fondo -->
+    <div class="fixed inset-0 z-0">
+        <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+        style="background-image: url('images/FestaFrontal.webp');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+    </div> 
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden antialiased">
+
+<header id="main-header" class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <button id="back-btn" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Volver">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+    </button>
+    <h1 id="header-title" class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Métodos de Pago</h1>
+    <div class="flex size-10 shrink-0 items-center"></div> </header>
+
+    <main id="list-screen" class="flex-grow px-4 pt-4 pb-28">
+        <div id="payment-methods-container" class="flex flex-col gap-4">
+        
+        <div id="payment-method-mastercard" class="payment-method-card flex items-center gap-4 bg-card-dark rounded-lg p-4 min-h-[72px] justify-between">
+            <div class="flex items-center gap-4">
+            <img class="h-6 w-10" alt="Mastercard logo" src="images/logo-Mastercard.png"/>
+            <div class="flex flex-col justify-center">
+                <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">Mastercard</p>
+                <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">**** **** **** 4242</p>
+            </div>
+            </div>
+            <div class="shrink-0 flex items-center gap-2">
+            <div class="default-check flex size-7 items-center justify-center text-green-500">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            </div>
+            <button class="more-btn hidden text-text-primary-dark flex size-7 items-center justify-center" data-method-id="mastercard" aria-label="Más opciones para Mastercard">
+                <span class="material-symbols-outlined text-2xl">more_vert</span>
+            </button>
+            </div>
+        </div>
+        
+        <div id="payment-method-visa" class="payment-method-card flex items-center gap-4 bg-card-dark rounded-lg p-4 min-h-[72px] justify-between">
+            <div class="flex items-center gap-4">
+            <img class="h-6 w-10" alt="Visa logo" src="images/VISA.png"/>
+            <div class="flex flex-col justify-center">
+                <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">Visa</p>
+                <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">**** **** **** 1234</p>
+            </div>
+            </div>
+            <div class="shrink-0 flex items-center gap-2">
+            <div class="default-check hidden size-7 items-center justify-center text-green-500">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            </div>
+            <button class="more-btn flex text-text-primary-dark size-7 items-center justify-center" data-method-id="visa" aria-label="Más opciones para Visa">
+                <span class="material-symbols-outlined text-2xl">more_vert</span>
+            </button>
+            </div>
+        </div>
+        
+        </div>
+        
+        <div class="fixed bottom-0 left-0 right-0 mx-auto max-w-md p-4 bg-gradient-to-t from-background-dark to-transparent">
+        <button data-action="show-form" class="flex max-w-[480px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] min-w-0 gap-3 shadow-lg shadow-primary/30 transition-transform active:scale-95">
+            <span class="material-symbols-outlined text-2xl">add</span>
+            <span class="truncate">Añadir Nuevo Método</span>
+        </button>
+    </div>
+    </main>
+
+    <main id="form-screen" class="hidden flex-1 flex flex-col">
+        <div class="flex-1 px-4 py-4 flex flex-col gap-6">
+        
+        <div class="relative w-full max-w-sm mx-auto aspect-[1.586] rounded-xl shadow-lg bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 flex flex-col justify-between overflow-hidden">
+            <div class="flex justify-between items-start">
+            <img alt="Chip de tarjeta" class="w-12 h-8 object-contain" src="images/ChipTarjeta.png" />
+            <img alt="Logo BCP" class="w-16 h-10 object-contain" src="images/BCP Tarjeta.png" />
+            </div>
+            <div class="text-white text-xl md:text-2xl font-mono tracking-wider">
+            <p>5042 2210 0000 4747</p>
+            </div>
+            <div class="flex justify-between items-end text-white">
+            <div>
+                <p class="text-xs uppercase opacity-70">Titular</p>
+                <p class="text-base font-medium">Ana Rodriguez</p>
+            </div>
+            <div>
+                <p class="text-xs uppercase opacity-70">Expira</p>
+                <p class="text-base font-medium">12/26</p>
+            </div>
+            </div>
+        </div>
+        
+        <form class="flex flex-col gap-4">
+            <label class="flex flex-col flex-1">
+                <p class="text-white text-sm font-medium leading-normal pb-2">Número de Tarjeta</p>
+                <div class="relative flex w-full flex-1 items-stretch rounded-lg">
+                <input id="card-number-input" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/80 border border-border-dark bg-card-dark h-14 placeholder:text-text-secondary-dark p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" placeholder="0000 0000 0000 0000" value="5042 2210 0000 4747" />
+                <div class="text-text-secondary-dark flex border border-border-dark bg-card-dark items-center justify-center px-[15px] rounded-r-lg border-l-0">
+                    <span class="material-symbols-outlined">credit_card</span>
+                </div>
+                </div>
+            </label>
+            <label class="flex flex-col flex-1">
+                <p class="text-white text-sm font-medium leading-normal pb-2">Nombre del Titular</p>
+                <input id="card-name-input" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/80 border border-border-dark bg-card-dark h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" placeholder="e.g. John Doe" value="Ana Rodriguez" />
+            </label>
+            </label>
+            <div class="flex w-full items-end gap-4">
+            <label class="flex flex-col flex-1">
+                <p class="text-white text-sm font-medium leading-normal pb-2">Fecha de Venc.</p>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/80 border border-border-dark bg-card-dark h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" placeholder="MM / YY" value="12 / 26" />
+            </label>
+            <label class="flex flex-col flex-1">
+                <div class="flex items-center gap-2 pb-2">
+                <p class="text-white text-sm font-medium leading-normal">CVV</p>
+                <span class="material-symbols-outlined text-base text-text-secondary-dark cursor-help">help_outline</span>
+                </div>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/80 border border-border-dark bg-card-dark h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" placeholder="123" value="***" />
+            </label>
+            </div>
+        </form>
+        </div>
+        
+        <footer class="sticky bottom-0 bg-background-dark p-4 pt-2 mt-auto">
+        <div class="flex items-center justify-center gap-2 text-text-secondary-dark text-xs mb-4">
+            <span class="material-symbols-outlined text-sm">lock</span>
+            <p>Tu información de pago está encriptada y segura.</p>
+        </div>
+        <button data-action="show-confirm" class="w-full bg-primary text-white font-bold py-4 px-6 rounded-xl h-14 flex items-center justify-center transition-transform active:scale-95">
+            Guardar Tarjeta
+        </button>
+        </footer>
+    </main>
+
+    <main id="confirm-screen" class="hidden flex-1 px-4 py-4 flex flex-col justify-between">
+        <div class="flex flex-col gap-4">
+        <h3 class="text-text-primary-dark text-lg font-bold">Confirmar detalles</h3>
+        <p class="text-text-secondary-dark text-sm">Estás a punto de añadir esta tarjeta a tu cuenta. ¿Es correcto?</p>
+        
+        <div class="flex items-center gap-4 bg-card-dark rounded-lg p-4 min-h-[72px] justify-between">
+            <div class="flex items-center gap-4">
+            <img class="h-6 w-10" alt="BCP logo" src="images/logo-bcp.png"/>
+            <div class="flex flex-col justify-center">
+                <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">BCP Card</p>
+                <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">**** **** **** 4747</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+        <footer class="p-4 pt-2 mt-auto">
+        <div class="flex gap-4">
+            <button data-action="show-form" class="w-full bg-card-dark text-white font-bold py-4 px-6 rounded-xl h-14 flex items-center justify-center transition-transform active:scale-95">
+            Editar
+            </button>
+            <button data-action="show-success" class="w-full bg-primary text-white font-bold py-4 px-6 rounded-xl h-14 flex items-center justify-center transition-transform active:scale-95">
+            Confirmar
+            </button>
+        </div>
+        </footer>
+    </main>
+    
+    <main id="success-screen" class="hidden flex-1 px-4 py-4 flex flex-col justify-center items-center text-center">
+        <div class="flex flex-col items-center gap-4 animate-pulse-in">
+        <span class="material-symbols-outlined text-green-500 text-8xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <h2 class="text-3xl font-bold text-white">¡Tarjeta Añadida!</h2>
+        <p class="text-text-secondary-dark">Tu Tarjeta **** 4747 se ha añadido con éxito.</p>
+        </div>
+    </main>
+
+</div>
+
+<div id="actions-modal" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm">
+    <div class="absolute bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-card-dark rounded-t-xl flex flex-col animate-slide-up">
+    
+    <header class="flex-shrink-0 flex items-center justify-between p-4 border-b border-white/10">
+        <h2 id="modal-title" class="text-xl font-bold text-white">Opciones de Pago</h2>
+        <button id="close-modal-btn" class="p-1 rounded-full text-white transition-colors hover:bg-white/10" aria-label="Cerrar">
+        <span class="material-symbols-outlined">close</span>
+        </button>
+    </header>
+    
+    <main class="flex-1 p-4 space-y-2">
+        <button id="set-default-btn" class="flex w-full items-center gap-4 rounded-lg p-4 transition-colors hover:bg-white/5">
+        <span class="material-symbols-outlined text-text-secondary-dark">check_circle</span>
+        <span class="flex-1 text-text-primary-dark text-left">Marcar como predeterminado</span>
+        </button>
+        <button id="delete-btn" class="flex w-full items-center gap-4 rounded-lg p-4 transition-colors hover:bg-white/5">
+        <span class="material-symbols-outlined text-red-500">delete</span>
+        <span class="flex-1 text-red-500 text-left">Eliminar método</span>
+        </button>
+    </main>
+    
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- NAVEGACIÓN DE PANTALLAS (Router) ---
+        const screens = {
+        'list': document.getElementById('list-screen'),
+        'form': document.getElementById('form-screen'),
+        'confirm': document.getElementById('confirm-screen'),
+        'success': document.getElementById('success-screen')
+        };
+        const header = document.getElementById('main-header');
+        const headerTitle = document.getElementById('header-title');
+        const backBtn = document.getElementById('back-btn');
+        const paymentMethodsContainer = document.getElementById('payment-methods-container');
+
+        function showScreen(screenId) {
+        Object.values(screens).forEach(screen => screen.classList.add('hidden'));
+        if (screens[screenId]) {
+            screens[screenId].classList.remove('hidden');
+        }
+
+        header.classList.remove('hidden');
+        
+        if (screenId === 'list') {
+            headerTitle.textContent = 'Métodos de Pago';
+            backBtn.dataset.target = 'Perfil.html';
+        } else if (screenId === 'form') {
+            headerTitle.textContent = 'Añadir Nueva Tarjeta';
+            backBtn.dataset.target = 'list';
+        } else if (screenId === 'confirm') {
+            headerTitle.textContent = 'Confirmar Datos';
+            backBtn.dataset.target = 'form';
+        } else if (screenId === 'success') {
+            header.classList.add('hidden');
+            
+            // --- ¡AQUÍ ESTÁ LA MAGIA! ---
+            // 1. Añadimos la tarjeta al DOM (mientras la pantalla de éxito se muestra)
+            addCardToList();
+            // 2. Volvemos a vincular los botones "..."
+            rebindMoreButtons();
+            
+            setTimeout(() => {
+            // 3. Volvemos a la lista (que ahora tiene la nueva tarjeta)
+            showScreen('list');
+            }, 2000);
+        }
+        }
+        
+        backBtn.addEventListener('click', () => {
+        const target = backBtn.dataset.target;
+        if (target.includes('Perfil.html')) {
+            window.location.href = target;
+        } else {
+            showScreen(target);
+        }
+        });
+
+        document.addEventListener('click', (e) => {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        if (action) {
+            e.preventDefault();
+            showScreen(action.replace('show-', ''));
+        }
+        });
+
+        // --- LÓGICA DEL MODAL "..." ---
+        let currentMethodId = null;
+        const actionsModal = document.getElementById('actions-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const setDefaultBtn = document.getElementById('set-default-btn');
+        const deleteBtn = document.getElementById('delete-btn');
+        const modalTitle = document.getElementById('modal-title');
+
+        // **NUEVO:** Convertida en una función reutilizable
+        function rebindMoreButtons() {
+        const allMoreButtons = document.querySelectorAll('.more-btn');
+        
+        allMoreButtons.forEach(button => {
+            // Remover listener antiguo para evitar duplicados
+            button.replaceWith(button.cloneNode(true));
+        });
+        
+        // Volver a buscar los botones clonados y añadir listeners
+        document.querySelectorAll('.more-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentMethodId = button.dataset.methodId;
+            const card = document.getElementById(`payment-method-${currentMethodId}`);
+            const cardName = card.querySelector('p').textContent;
+            modalTitle.textContent = `Opciones para ${cardName}`;
+            actionsModal.classList.remove('hidden');
+            });
+        });
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+        actionsModal.classList.add('hidden');
+        });
+
+        setDefaultBtn.addEventListener('click', () => {
+        if (!currentMethodId) return;
+        document.querySelectorAll('.payment-method-card').forEach(card => {
+            card.querySelector('.default-check').classList.add('hidden');
+            card.querySelector('.more-btn').classList.remove('hidden');
+        });
+        const selectedCard = document.getElementById(`payment-method-${currentMethodId}`);
+        selectedCard.querySelector('.default-check').classList.remove('hidden');
+        selectedCard.querySelector('.more-btn').classList.add('hidden');
+        actionsModal.classList.add('hidden');
+        });
+
+        deleteBtn.addEventListener('click', () => {
+        if (!currentMethodId) return;
+        const cardToDelete = document.getElementById(`payment-method-${currentMethodId}`);
+        if (cardToDelete) {
+            cardToDelete.remove();
+        }
+        actionsModal.classList.add('hidden');
+        });
+        
+        // --- LÓGICA PARA AÑADIR LA TARJETA (¡NUEVO!) ---
+        
+        // Pequeña utilidad para obtener el logo (demo)
+        function getCardLogo(cardNumber) {
+        if (cardNumber.startsWith('4')) {
+            return { name: 'Visa', logo: 'images/VISA.png' };
+        }
+        if (cardNumber.startsWith('5')) {
+            return { name: 'BCP Card', logo: 'images/logo-bcp.png' };
+        }
+        return { name: 'Tarjeta', logo: '' }; // Fallback
+        }
+        
+        // Función que crea el HTML y lo añade
+        function addCardToList() {
+        const numero = document.getElementById('card-number-input').value;
+        const nombre = document.getElementById('card-name-input').value;
+        
+        const ultimos4 = numero.slice(-4);
+        const cardInfo = getCardLogo(numero);
+        const cardId = `payment-method-${cardInfo.name.toLowerCase()}-${ultimos4}`;
+
+        const nuevaTarjetaHtml = `
+            <div id="${cardId}" class="payment-method-card flex items-center gap-4 bg-card-dark rounded-lg p-4 min-h-[72px] justify-between">
+            <div class="flex items-center gap-4">
+                <img class="h-6 w-10" alt="${cardInfo.name} logo" src="${cardInfo.logo}"/>
+                <div class="flex flex-col justify-center">
+                <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">${cardInfo.name}</p>
+                <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">**** **** **** ${ultimos4}</p>
+                </div>
+            </div>
+            <div class="shrink-0 flex items-center gap-2">
+                <div class="default-check hidden size-7 items-center justify-center text-green-500">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                </div>
+                <button class="more-btn flex text-text-primary-dark size-7 items-center justify-center" data-method-id="${cardId}" aria-label="Más opciones para ${cardInfo.name}">
+                <span class="material-symbols-outlined text-2xl">more_vert</span>
+                </button>
+            </div>
+            </div>
+        `;
+        
+        // Añadir el nuevo HTML al contenedor de la lista
+        paymentMethodsContainer.insertAdjacentHTML('beforeend', nuevaTarjetaHtml);
+        
+        // Limpiar el formulario para la próxima vez
+        document.getElementById('card-number-input').value = '';
+        document.getElementById('card-name-input').value = '';
+        }
+        
+        // --- INICIALIZACIÓN ---
+        showScreen('list'); // Empezar en la pantalla de lista
+        rebindMoreButtons(); // Vincular los botones "..." iniciales
+        
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Notificaciones</title>
+    <link href="images/LogoFesta.ico" rel="icon" />
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5e1a0d",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211411", // <-- Color unificado
+              "card-dark": "#1E1E1E",     // <-- Color unificado
+              "text-primary-dark": "#F5F5F5",
+              "text-secondary-dark": "#A9A9A9",
+              "text-ary-dark": "#FFFFFF",
+            },
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        min-height: 100dvh;
+      }
+      /* Estilo para el filtro activo */
+      .filter-btn.active {
+        background-color: theme('colors.primary');
+        color: theme('colors.white');
+        box-shadow: 0 2px 8px rgba(94, 26, 13, 0.5);
+      }
+      /* Scroll Snap para el carrusel */
+      .scroll-snap-x {
+        scroll-snap-type: x mandatory;
+      }
+      .scroll-snap-start {
+        scroll-snap-align: start;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<!-- Fondo -->
+  <div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+      style="background-image: url('images/FestaFrontal.webp');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent"></div>
+  </div>
+
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+  
+  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <a href="Home.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Volver a Inicio">
+      <span class="material-symbols-outlined">arrow_back_ios_new</span>
+    </a>
+    <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Notificaciones</h2>
+    <button class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Configuración de Notificaciones">
+      <span class="material-symbols-outlined text-2xl">settings</span>
+    </button>
+  </header>
+  
+  <main class="flex-1 pb-10">
+    <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-snap-x">
+      <div class="flex items-stretch p-4 gap-4">
+        
+        <a href="Menu.html" class="scroll-snap-start flex h-full flex-1 flex-col gap-4 rounded-xl bg-card-dark shadow-sm min-w-64 overflow-hidden">
+          <img src="images/CoctelesFesta.jpg" 
+               alt="Cócteles vibrantes en una barra"
+               class="w-full aspect-video object-cover">
+          <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+            <div>
+              <p class="text-text-primary-dark text-base font-bold leading-normal">¡Happy Hour Hoy!</p>
+              <p class="text-text-secondary-dark text-sm font-normal leading-normal">50% de descuento en todos los cócteles</p>
+            </div>
+            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] transition-transform active:scale-95">
+              <span class="truncate">Ver Oferta</span>
+            </button>
+          </div>
+        </a>
+        
+        <a href="Menu.html" class="scroll-snap-start flex h-full flex-1 flex-col gap-4 rounded-xl bg-card-dark shadow-sm min-w-64 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDR8fGNob2NvbGF0ZSUyMGxhdmElMjBjYWtlfGVufDB8fHx8MTczMDA2NDA0Mnww&ixlib=rb-4.0.3&q=80&w=400" 
+               alt="Un delicioso trozo de pastel de chocolate"
+               class="w-full aspect-video object-cover">
+          <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+            <div>
+              <p class="text-text-primary-dark text-base font-bold leading-normal">Un Dulce Regalo</p>
+              <p class="text-text-secondary-dark text-sm font-normal leading-normal">Postre gratis en tu próxima comida</p>
+            </div>
+            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] transition-transform active:scale-95">
+              <span class="truncate">Reclamar</span>
+            </button>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="flex px-4 py-3">
+      <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
+        <button class="filter-btn flex-1 cursor-pointer h-full rounded-md px-2 text-text-secondary-dark text-sm font-medium" data-filter="all">
+          <span class="truncate">Todos</span>
+        </button>
+        <button class="filter-btn flex-1 cursor-pointer h-full rounded-md px-2 text-text-secondary-dark text-sm font-medium" data-filter="offers">
+          <span class="truncate">Ofertas</span>
+        </button>
+        <button class="filter-btn flex-1 cursor-pointer h-full rounded-md px-2 text-text-secondary-dark text-sm font-medium" data-filter="updates">
+          <span class="truncate">Actualizaciones</span>
+        </button>
+      </div>
+    </div>
+    
+    <div id="notification-list">
+      
+      <h3 class="text-text-primary-dark text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Hoy</h3>
+      
+      <div class="notification-item flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between cursor-pointer hover:bg-card-dark" data-category="updates">
+        <div class="flex items-center gap-4">
+          <div class="text-white flex items-center justify-center rounded-full bg-primary/20 shrink-0 size-12">
+            <span class="material-symbols-outlined text-primary">calendar_month</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">Reservación Confirmada</p>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">Tu mesa para 2 está confirmada para mañana a las 8 PM.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <p class="text-gray-500 text-sm font-normal leading-normal">hace 5m</p>
+          <div class="unread-dot size-2.5 rounded-full bg-primary"></div>
+          <button class="delete-notification-btn ml-2 p-2 rounded-full text-text-secondary-dark hover:text-white hover:bg-white/10 transition-colors" aria-label="Eliminar notificación">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="notification-item flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between cursor-pointer hover:bg-card-dark" data-category="updates">
+        <div class="flex items-center gap-4">
+          <div class="text-white flex items-center justify-center rounded-full bg-orange-500/20 shrink-0 size-12">
+            <span class="material-symbols-outlined text-orange-500">local_mall</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">Tu pedido está listo</p>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">Recoge tu pedido #1209 en la barra.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <p class="text-gray-500 text-sm font-normal leading-normal">hace 1h</p>
+          <div class="unread-dot size-2.5 rounded-full bg-primary"></div>
+          <button class="delete-notification-btn ml-2 p-2 rounded-full text-text-secondary-dark hover:text-white hover:bg-white/10 transition-colors" aria-label="Eliminar notificación">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+      
+      <h3 class="text-text-primary-dark text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-6">Ayer</h3>
+      
+      <div class="notification-item flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between cursor-pointer hover:bg-card-dark" data-category="updates">
+        <div class="flex items-center gap-4">
+          <div class="text-white flex items-center justify-center rounded-full bg-primary/20 shrink-0 size-12">
+            <span class="material-symbols-outlined text-primary">chat_bubble</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">Nuevo Mensaje de FESTA</p>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">FESTA te envió un mensaje sobre tu consulta.</p>
+          </div>
+        </div>
+        <div class="shrink-0"><p class="text-gray-500 text-sm font-normal leading-normal">Ayer</p></div>
+        <button class="delete-notification-btn ml-2 p-2 rounded-full text-text-secondary-dark hover:text-white hover:bg-white/10 transition-colors" aria-label="Eliminar notificación">
+            <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+      
+      <div class="notification-item flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between cursor-pointer hover:bg-card-dark" data-category="offers">
+        <div class="flex items-center gap-4">
+          <div class="text-white flex items-center justify-center rounded-full bg-orange-500/20 shrink-0 size-12">
+            <span class="material-symbols-outlined text-orange-500">restaurant_menu</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="text-text-primary-dark text-base font-medium leading-normal line-clamp-1">¡Nuevo Menú de Temporada!</p>
+            <p class="text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">Nuestro nuevo menú acaba de lanzarse. ¡Ven a probarlo!</p>
+          </div>
+        </div>
+        <div class="shrink-0"><p class="text-gray-500 text-sm font-normal leading-normal">Ayer</p></div>
+        <button class="delete-notification-btn ml-2 p-2 rounded-full text-text-secondary-dark hover:text-white hover:bg-white/10 transition-colors" aria-label="Eliminar notificación">
+            <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+    </div>
+    
+    <div id="empty-state" class="hidden flex-col items-center justify-center text-center p-8 mt-10">
+      <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50">notifications_off</span>
+      <h3 class="text-text-primary-dark text-lg font-bold mt-4">Sin notificaciones</h3>
+      <p class="text-text-secondary-dark text-sm mt-1">No hay notificaciones en esta categoría.</p>
+    </div>
+    
+  </main>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- LÓGICA DE FILTROS ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const notificationItems = document.querySelectorAll('.notification-item');
+    const emptyState = document.getElementById('empty-state');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        
+        // Estilo de botones
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'text-text-secondary-dark');
+          if (btn === button) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.add('text-text-secondary-dark');
+          }
+        });
+        
+        let itemsFound = 0;
+        
+        // Filtrar lista
+        notificationItems.forEach(item => {
+          const category = item.dataset.category;
+          
+          if (filter === 'all' || category === filter) {
+            item.style.display = 'flex';
+            itemsFound++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        // Mostrar/Ocultar estado vacío
+        if (itemsFound === 0) {
+          emptyState.style.display = 'flex';
+        } else {
+          emptyState.style.display = 'none';
+        }
+      });
+    });
+
+    // --- LÓGICA DE MARCAR COMO LEÍDO ---
+    notificationItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const unreadDot = item.querySelector('.unread-dot');
+        if (unreadDot) {
+          unreadDot.style.display = 'none';
+        }
+      });
+    });
+
+    // --- LÓGICA DE ELIMINAR NOTIFICACIÓN ---
+    document.addEventListener('click', (e) => {
+      const deleteBtn = e.target.closest('.delete-notification-btn');
+      if (!deleteBtn) return;
+      
+      e.stopPropagation();
+      const notificationItem = deleteBtn.closest('.notification-item');
+      if (notificationItem) {
+        notificationItem.style.opacity = '0';
+        notificationItem.style.transition = 'opacity 0.3s ease-out';
+        setTimeout(() => {
+          notificationItem.remove();
+        }, 300);
+      }
+    });
+    
+  });
+</script>
+
+</body>
+</html>

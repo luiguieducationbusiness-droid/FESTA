@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Comunidad FESTA</title>
+    <link href="images/LogoFesta.ico" rel="icon" />
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                primary: "#5e1a0d",
+                "background-light": "#f8f6f6",
+                "background-dark": "#211411", // <-- Color unificado
+                "card-dark": "#1E1E1E",     // <-- Color unificado
+                "text-primary-dark": "#F5F5F5",
+                "text-secondary-dark": "#A9A9A9",
+                "border-dark": "#3c3c3c",
+                },
+                fontFamily: {
+                display: ["Spline Sans", "sans-serif"],
+                },
+                borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px",
+                },
+                // Animación para el modal
+                keyframes: {
+                slideUp: {
+                    '0%': { transform: 'translateY(100%)' },
+                    '100%': { transform: 'translateY(0)' },
+                }
+                },
+                animation: {
+                'slide-up': 'slideUp 0.3s ease-out forwards',
+                }
+            },
+            },
+        };
+        </script>
+        
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: 100dvh;
+        }
+        /* Estilo para la pestaña de categoría activa */
+            .tab-btn.active {
+            color: theme('colors.white');
+            background-color: theme('colors.background-dark');
+            }
+            .tab-btn.active {
+        /* texto en blanco y negrita cuando está activa */
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            /* fondo oscuro para resaltar (coincide con background-dark) */
+            background-color: #211411 !important;
+        }
+        /* Estilo para el botón de like activo */
+        .like-btn.liked {
+            color: theme('colors.primary');
+        }
+        .like-btn.liked .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+        </style>
+    </head>
+    <body class="bg-background-light dark:bg-background-dark font-display">
+
+    <!-- Fondo -->
+    <div class="fixed inset-0 z-0">
+        <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+        style="background-image: url('images/FestaFrontal.webp');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+    </div> 
+
+    <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+
+    <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <a href="Perfil.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+            aria-label="Volver a Perfil">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+    </a>
+    <h2 class="text-white text-lg font-bold leading-tight tracking-[0.08em] flex-1 text-center">Comunidad FESTA</h2>
+    <div class="flex size-10 shrink-0 items-center"></div> </header>
+    
+    <main class="flex-grow pb-28"> <div class="flex px-4 py-3">
+        <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
+            <button class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium" data-target="muro-content">
+            <span class="truncate">Muro FESTA</span>
+            </button>
+            <button class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium" data-target="instagram-content">
+            <span class="truncate">Instagram</span>
+            </button>
+            <button class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium" data-target="tiktok-content">
+            <span class="truncate">TikTok</span>
+            </button>
+        </div>
+        </div>
+        
+        <div id="muro-content" class="tab-content">
+        
+        <div class="p-4 @container">
+            <div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-lg border border-border-dark bg-card-dark p-5 @[480px]:flex-row @[480px]:items-center">
+            <div class="flex flex-col gap-1">
+                <p class="text-white text-base font-bold leading-tight">¿Noche con amigos?</p>
+                <p class="text-text-secondary-dark text-base font-normal leading-normal">Invita a tus contactos y haz reservaciones grupales.</p>
+            </div>
+            <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium leading-normal whitespace-nowrap transition-transform active:scale-95">
+                <span class="truncate">Activar Modo Amigo</span>
+            </button>
+            </div>
+        </div>
+        
+        <div id="feed-container" class="flex flex-col">
+            
+            <div class="p-4 @container">
+            <div class="flex flex-col items-stretch justify-start rounded-lg">
+                <img class="w-full aspect-video object-cover rounded-lg" alt="Amigos riendo y sosteniendo cócteles en un bar" src="images/ClienteFesta.jpg"/>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 py-4">
+                <div class="flex items-center gap-3">
+                    <img class="h-8 w-8 rounded-full object-cover" alt="Foto de perfil de Ana Pérez" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDEyfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTczMDEyODc0OHww&ixid=rb-4.0.3&q=80&w=100"/>
+                    <p class="text-text-secondary-dark text-sm font-normal leading-normal">Ana Pérez • hace 2h</p>
+                </div>
+                <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">¡Increíble noche!</p>
+                <p class="text-text-secondary-dark text-base font-normal leading-normal">La música estuvo espectacular y los cócteles, de otro mundo.</p>
+                <div class="flex items-center gap-4 mt-2">
+                    <button class="like-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">favorite_border</span>
+                    <span class="like-count text-sm font-medium">24</span>
+                    </button>
+                    <button class="comment-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
+                    <span class="text-sm font-medium">3</span>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="p-4 @container">
+            <div class="flex flex-col items-stretch justify-start rounded-lg">
+                <img class="w-full aspect-video object-cover rounded-lg" alt="Un plato vibrante de comida gourmet" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDE1fHx0YWNvc3xlbnwwfHx8fDE3MzAwNjQ0MTR8MA&ixid=rb-4.0.3&q=80&w=600"/>
+                <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 py-4">
+                <div class="flex items-center gap-3">
+                    <img class="h-8 w-8 rounded-full object-cover" alt="Foto de perfil de Carlos Gómez" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDEwfHxtYWxlJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzMwMTI5MDIyfDA&ixid=rb-4.0.3&q=80&w=100"/>
+                    <p class="text-text-secondary-dark text-sm font-normal leading-normal">Carlos Gómez • hace 5h</p>
+                </div>
+                <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">El mejor ambiente</p>
+                <p class="text-text-secondary-dark text-base font-normal leading-normal">FESTA nunca decepciona. Buena comida, buena gente y la mejor energía.</p>
+                <div class="flex items-center gap-4 mt-2">
+                    <button class="like-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">favorite_border</span>
+                    <span class="like-count text-sm font-medium">42</span>
+                    </button>
+                    <button class="comment-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
+                    <span class="text-sm font-medium">8</span>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+        </div> </div>
+        
+        <div id="instagram-content" class="tab-content hidden p-4">
+        <p class="text-text-secondary-dark text-center pt-10">Aquí se mostraría el feed de Instagram.</p>
+        </div>
+        
+        <div id="tiktok-content" class="tab-content hidden p-4">
+        <p class="text-text-secondary-dark text-center pt-10">Aquí se mostraría el feed de TikTok.</p>
+        </div>
+        
+    </main>
+    
+    <div class="fixed bottom-6 right-4 z-30">
+        <button id="new-post-btn" aria-label="Nuevo post" class="flex h-14 w-14 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 transition-transform active:scale-90">
+            <span class="material-symbols-outlined text-3xl">add</span>
+        </button>
+    </div>
+
+    </div>
+
+    <div id="new-post-modal" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm">
+    <div class="absolute bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-card-dark rounded-t-xl flex flex-col h-[80%] animate-slide-up">
+        
+        <header class="flex-shrink-0 flex items-center justify-between p-4 border-b border-border-dark">
+        <h2 class="text-xl font-bold text-white">Crear Publicación</h2>
+        <button id="close-modal-btn" class="p-1 rounded-full text-white transition-colors hover:bg-white/10" aria-label="Cerrar">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        </header>
+        
+        <main class="flex-1 p-4 flex flex-col gap-4">
+        <textarea id="post-textarea" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/80 border border-border-dark bg-background-dark h-40 placeholder:text-text-secondary-dark p-3 text-base font-normal leading-normal" 
+                    placeholder="¿Qué estás pensando, Ana?"></textarea>
+
+        <!-- input de archivo oculto + boton para abrir selector + vista previa -->
+        <input id="image-input" type="file" accept="image/*" class="hidden" />
+        <button id="add-photo-btn" class="flex items-center gap-2 text-white p-2 rounded-lg hover:bg-primary/40" type="button">
+            <span class="material-symbols-outlined">add_photo_alternate</span>
+            <span class="font-medium">Añadir Foto</span>
+        </button>
+
+        <div id="image-preview" class="hidden rounded-lg overflow-hidden border border-border-dark">
+            <img id="image-preview-img" src="" alt="Vista previa" class="w-full object-cover" />
+        </div>
+
+        </main>
+        
+        <footer class="flex-shrink-0 p-4 border-t border-border-dark">
+        <button id="submit-post-btn" class="w-full h-14 bg-primary rounded-xl text-white font-bold text-lg flex items-center justify-center transition-transform active:scale-95">
+            Publicar
+        </button>
+        </footer>
+        
+    </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- LÓGICA DE PESTAÑAS (TABS) ---
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            
+            tabContents.forEach(content => content.classList.add('hidden'));
+            tabButtons.forEach(btn => btn.classList.remove('active', 'text-text-primary-dark'));
+            
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) targetSection.classList.remove('hidden');
+            
+            button.classList.add('active');
+            tabButtons.forEach(btn => {
+            if (!btn.classList.contains('active')) btn.classList.add('text-text-primary-dark');
+            });
+        });
+        });
+
+        // --- LÓGICA DEL MODAL "CREAR PUBLICACIÓN" ---
+        const newPostModal = document.getElementById('new-post-modal');
+        const newPostBtn = document.getElementById('new-post-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const submitPostBtn = document.getElementById('submit-post-btn');
+        const feedContainer = document.getElementById('feed-container');
+        const postTextarea = document.getElementById('post-textarea');
+
+        newPostBtn.addEventListener('click', () => {
+        newPostModal.classList.remove('hidden');
+        });
+        closeModalBtn.addEventListener('click', () => {
+        newPostModal.classList.add('hidden');
+        });
+        
+        // --- REFERENCIAS PARA FOTO ---
+        const addPhotoBtn = document.getElementById('add-photo-btn');
+        const imageInput = document.getElementById('image-input');
+        const imagePreview = document.getElementById('image-preview');
+        const imagePreviewImg = document.getElementById('image-preview-img');
+
+        // Guardará la imagen seleccionada como dataURL temporal para insertarla en el post
+        let selectedImageDataURL = null;
+
+        // Abrir selector de archivos al pulsar el botón
+        addPhotoBtn.addEventListener('click', () => {
+            imageInput.click();
+        });
+
+        // Leer archivo seleccionado y mostrar preview
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) {
+                // limpiar si no hay archivo
+                selectedImageDataURL = null;
+                imagePreview.classList.add('hidden');
+                imagePreviewImg.src = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                selectedImageDataURL = ev.target.result;
+                imagePreviewImg.src = selectedImageDataURL;
+                imagePreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Limpiar preview al abrir modal
+        newPostBtn.addEventListener('click', () => {
+            newPostModal.classList.remove('hidden');
+            // reset previa si queda algo
+            selectedImageDataURL = null;
+            imageInput.value = '';
+            imagePreview.classList.add('hidden');
+            imagePreviewImg.src = '';
+            postTextarea.value = '';
+        });
+
+        // Publicar el post (añade la imagen si existe)
+        submitPostBtn.addEventListener('click', () => {
+            const postText = postTextarea.value.trim();
+            if (!postText && !selectedImageDataURL) return; // no publicar si todo vacío
+
+            // Imagen HTML si existe
+            const imageHtml = selectedImageDataURL ? `<img class="w-full aspect-video object-cover rounded-lg" src="${selectedImageDataURL}" alt="Foto del post"/>` : '';
+
+        // Crear el HTML para el nuevo post
+        const newPostHtml = `
+                <div class="p-4 @container">
+                <div class="flex flex-col items-stretch justify-start rounded-lg">
+                    ${imageHtml}
+                    <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 py-4">
+                    <div class="flex items-center gap-3">
+                        <img class="h-8 w-8 rounded-full object-cover" alt="Foto de perfil de Ana Rodriguez" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDh8fHdvbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzMwMTI4Njk2fDA&ixid=rb-4.0.3&q=80&w=100"/>
+                        <p class="text-text-secondary-dark text-sm font-normal leading-normal">Ana Rodriguez • ahora mismo</p>
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">${postText}</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <button class="like-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">favorite_border</span>
+                        <span class="like-count text-sm font-medium">0</span>
+                        </button>
+                        <button class="comment-btn flex items-center gap-2 text-text-secondary-dark hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
+                        <span class="text-sm font-medium">0</span>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            `;
+        
+        // Añadir el post al inicio del feed
+        feedContainer.insertAdjacentHTML('afterbegin', newPostHtml);
+        
+        // Limpiar y cerrar
+            selectedImageDataURL = null;
+            imageInput.value = '';
+            imagePreview.classList.add('hidden');
+            imagePreviewImg.src = '';
+            postTextarea.value = '';
+            newPostModal.classList.add('hidden');
+
+            // Volver a vincular los botones del nuevo post
+            rebindFeedButtons();
+        });
+
+        // --- LÓGICA DE "ME GUSTA" Y "COMENTAR" ---
+        function handleLikeClick(e) {
+        const button = e.currentTarget;
+        const icon = button.querySelector('.material-symbols-outlined');
+        const countSpan = button.querySelector('.like-count');
+        let count = parseInt(countSpan.textContent);
+
+        const isLiked = button.classList.toggle('liked');
+
+        if (isLiked) {
+            icon.textContent = 'favorite';
+            icon.style.fontVariationSettings = "'FILL' 1";
+            count++;
+        } else {
+            icon.textContent = 'favorite_border';
+            icon.style.fontVariationSettings = "'FILL' 0";
+            count--;
+        }
+        countSpan.textContent = count;
+        }
+
+        function handleCommentClick() {
+        // Simulación simple
+        prompt("Escribe tu comentario:");
+        }
+
+        function rebindFeedButtons() {
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            // Remover listener antiguo para evitar duplicados
+            btn.replaceWith(btn.cloneNode(true));
+        });
+        document.querySelectorAll('.comment-btn').forEach(btn => {
+            btn.replaceWith(btn.cloneNode(true));
+        });
+        
+        // Volver a añadir listeners
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', handleLikeClick);
+        });
+        document.querySelectorAll('.comment-btn').forEach(btn => {
+            btn.addEventListener('click', handleCommentClick);
+        });
+        }
+
+        // Vincular botones iniciales
+        rebindFeedButtons();
+    });
+</script>
+
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FESTA - Restobar</title>
+    <link href="images/LogoFesta.ico" rel="icon" />
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -80,8 +81,11 @@
       
       <button type="button" aria-label="Notificaciones" 
               class="flex cursor-pointer items-center justify-center rounded-full text-text-primary-dark transition-transform active:scale-90">
-        <span class="material-symbols-outlined text-2xl">notifications</span>
+        <a href="Notificacion.html" class="flex items-center">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </a>
       </button>
+
     </header>
 
     <main class="flex-1 pb-24">
@@ -94,8 +98,8 @@
             
             <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
               <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
-                   role="img" aria-label="Dos cócteles coloridos en la barra de un bar."
-                   style='background-image: url("images/CoctelesFesta.jpg");'></div>
+                  role="img" aria-label="Dos cócteles coloridos en la barra de un bar."
+                  style='background-image: url("images/CoctelesFesta.jpg");'></div>
               <div class="flex flex-1 flex-col justify-between p-4 pt-1">
                 <div>
                   <p class="text-base font-bold leading-normal text-text-primary-dark">2x1 en Cocktails</p>
@@ -106,8 +110,8 @@
             
             <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
               <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
-                   role="img" aria-label="Hamburguesa gourmet con papas fritas."
-                   style='background-image: url("images/HamburquesaFesta.webp");'></div>
+                  role="img" aria-label="Hamburguesa gourmet con papas fritas."
+                  style='background-image: url("images/HamburquesaFesta.webp");'></div>
               <div class="flex flex-1 flex-col justify-between p-4 pt-1">
                 <div>
                   <p class="text-base font-bold leading-normal text-text-primary-dark">Burger Fest</p>
@@ -118,8 +122,8 @@
             
             <a href="#" class="group flex h-full min-w-60 flex-1 flex-col gap-3 rounded-lg bg-card-dark/80 shadow-lg snap-start transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
               <div class="aspect-video w-full rounded-t-lg bg-cover bg-center bg-no-repeat" 
-                   role="img" aria-label="Torta de chocolate fundido (lava cake)."
-                   style='background-image: url("images/PostresFesta.jpg");'></div>
+                  role="img" aria-label="Torta de chocolate fundido (lava cake)."
+                  style='background-image: url("images/PostresFesta.jpg");'></div>
               <div class="flex flex-1 flex-col justify-between p-4 pt-1">
                 <div>
                   <p class="text-base font-bold leading-normal text-text-primary-dark">Postres a Mitad de Precio</p>
@@ -145,8 +149,8 @@
               </button>
             </div>
             <div class="aspect-square w-24 flex-shrink-0 rounded-lg bg-cover bg-center bg-no-repeat" 
-                 role="img" aria-label="Retrato de una DJ con audífonos en FESTA."
-                 style='background-image: url("images/DJenvivo2.webp");'></div>
+                role="img" aria-label="Retrato de una DJ con audífonos en FESTA."
+                style='background-image: url("images/DJenvivo2.webp");'></div>
           </div>
           
           <div class="flex items-stretch justify-between gap-4 rounded-lg bg-card-dark/80 p-4 shadow-lg transition-shadow hover:shadow-xl">
@@ -159,8 +163,8 @@
               </button>
             </div>
             <div class="aspect-square w-24 flex-shrink-0 rounded-lg bg-cover bg-center bg-no-repeat" 
-                 role="img" aria-label="Persona tocando guitarra acústica en un escenario."
-                 style='background-image: url("images/AcusticaFesta.jpg");'></div>
+                role="img" aria-label="Persona tocando guitarra acústica en un escenario."
+                style='background-image: url("images/AcusticaFesta.jpg");'></div>
           </div>
         </div>
       </section>
@@ -171,29 +175,29 @@
         <div class="grid grid-cols-2 gap-2 px-4">
           <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 role="img" aria-label="Plato de sushi variado."
-                 style='background-image: url("images/SushiFesta.jpg");'></div>
+                role="img" aria-label="Plato de sushi variado."
+                style='background-image: url("images/SushiFesta.jpg");'></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
             <p class="relative z-10 p-3 font-bold text-white">Sushi Fest</p>
           </a>
           <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 role="img" aria-label="Plato de rspaguetti con lomo."
-                 style='background-image: url("images/Spaguetti.jpg");'></div>
+                role="img" aria-label="Plato de rspaguetti con lomo."
+                style='background-image: url("images/Spaguetti.jpg");'></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
             <p class="relative z-10 p-3 font-bold text-white">Spaguetti</p>
           </a>
           <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 role="img" aria-label="Tacu Tacu."
-                 style='background-image: url("images/TacuTacu.jpg");'></div>
+                role="img" aria-label="Tacu Tacu."
+                style='background-image: url("images/TacuTacu.jpg");'></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
             <p class="relative z-10 p-3 font-bold text-white">Tacu Tacu</p>
           </a>
           <a href="#" class="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-lg transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98]">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 role="img" aria-label="Cocktail Mai Thai Festa."
-                 style='background-image: url("images/Mai\ Thai.jpg");'></div>
+                role="img" aria-label="Cocktail Mai Thai Festa."
+                style='background-image: url("images/Mai\ Thai.jpg");'></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
             <p class="relative z-10 p-3 font-bold text-white">Mai Thai Festa</p>
           </a>
@@ -208,32 +212,32 @@
             
             <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
               <div class="aspect-square w-full rounded-full bg-cover bg-center" 
-                   role="img" aria-label="Cocktail Golden Jack."
-                   style='background-image: url("images/GoldenJack.jpg");'></div>
+                  role="img" aria-label="Cocktail Golden Jack."
+                  style='background-image: url("images/GoldenJack.jpg");'></div>
               <p class="font-semibold text-text-primary-dark">Golden Jack</p>
               <p class="text-xs text-text-secondary-dark">Porque te gustan los clásicos.</p>
             </a>
             
             <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
               <div class="aspect-square w-full rounded-full bg-cover bg-center" 
-                   role="img" aria-label="Tiradito al Rocoto."
-                   style='background-image: url("images/Tiradito.jpg");'></div>
+                  role="img" aria-label="Tiradito al Rocoto."
+                  style='background-image: url("images/Tiradito.jpg");'></div>
               <p class="font-semibold text-text-primary-dark">Tiradito al Rocoto</p>
               <p class="text-xs text-text-secondary-dark">Para acompañar tu cerveza.</p>
             </a>
             
             <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
               <div class="aspect-square w-full rounded-full bg-cover bg-center" 
-                   role="img" aria-label="Postre Tiramisú en un plato."
-                   style='background-image: url("images/tiramisu.jpg");'></div>
+                  role="img" aria-label="Postre Tiramisú en un plato."
+                  style='background-image: url("images/tiramisu.jpg");'></div>
               <p class="font-semibold text-text-primary-dark">Tiramisú</p>
               <p class="text-xs text-text-secondary-dark">Un dulce final.</p>
             </a>
 
             <a href="#" class="group flex w-40 flex-col items-center gap-2 text-center snap-start transition-transform duration-300 ease-in-out hover:scale-[1.05] active:scale-[0.98]">
               <div class="aspect-square w-full rounded-full bg-cover bg-center" 
-                   role="img" aria-label="Almuerzos Ejecutivos."
-                   style='background-image: url("images/Almuerzos.jpg");'></div>
+                  role="img" aria-label="Almuerzos Ejecutivos."
+                  style='background-image: url("images/Almuerzos.jpg");'></div>
               <p class="font-semibold text-text-primary-dark">Almuerzos</p>
               <p class="text-xs text-text-secondary-dark">Disfruta lo mejor.</p>
             </a>

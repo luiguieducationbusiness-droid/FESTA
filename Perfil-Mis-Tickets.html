@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FESTA - Mis Tickets</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                primary: "#5e1a0d",
+                "background-light": "#f8f6f6",
+                "background-dark": "#211411", // Color unificado
+                "card-dark": "#1E1E1E",     // Color unificado
+                "text-primary-dark": "#F5F5F5",
+                "text-secondary-dark": "#A9A9A9",
+                "border-dark": "#3c3c3c",
+                },
+                fontFamily: {
+                display: ["Spline Sans", "sans-serif"],
+                },
+                borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px",
+                },
+            },
+            },
+        };
+        </script>
+        
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: 100vh;
+        }
+        /* Estilo para la pestaña activa */
+        .tab-btn.active {
+            color: theme('colors.white');
+            background-color: theme('colors.background-dark');
+        }
+        </style>
+    </head>
+    <body class="bg-background-light dark:bg-background-dark font-display">
+
+    <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
+
+    <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+        <a href="Perfil.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+                aria-label="Volver a Perfil">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+        </a>
+        <h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Mis Tickets</h1>
+        <div class="flex size-10 shrink-0 items-center"></div> </header>
+    
+    <main class="flex-grow pb-10">
+        
+        <div class="flex px-4 py-3">
+        <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
+            <button class="tab-btn active flex-1 cursor-pointer h-full rounded-lg px-2 text-sm font-medium" data-target="proximos-content">
+            <span class="truncate">Próximos</span>
+            </button>
+            <button class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium" data-target="historial-content">
+            <span class="truncate">Historial</span>
+            </button>
+        </div>
+        </div>
+        
+        <div id="proximos-content" class="tab-pane">
+        <div id="proximos-list" class="flex flex-col gap-4 p-4">
+            
+            <div class="ticket-card rounded-xl bg-card-dark shadow-lg overflow-hidden">
+            <img class="w-full h-32 object-cover" 
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDR8fGZlbWFsZSUyMGRqfGVufDB8fHx8MTczMDA2NDI0M3ww&ixid=rb-4.0.3&q=80&w=600" 
+                alt="DJ Electra Live Set">
+            
+            <div class="p-4 flex flex-col gap-3">
+                <h2 class="text-xl font-bold text-white">DJ Electra - Live Set</h2>
+                <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
+                <p class="text-sm font-medium text-white">SÁB, 28 NOV, 10:00 PM</p>
+                </div>
+                <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-lg">confirmation_number</span>
+                <p class="text-sm font-medium text-white">2 x Entrada General</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-border-dark p-4 flex flex-col items-center gap-3">
+                <p class="text-sm text-text-secondary-dark">Muestra este código para ingresar</p>
+                <img alt="Código QR del ticket" 
+                    class="w-32 h-32 rounded-lg bg-white p-2" 
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=FESTA-TICKET-12345-ELECTRA">
+            </div>
+            
+            <div class="flex border-t border-border-dark">
+                <button class="flex-1 p-3 flex items-center justify-center gap-2 text-center text-white font-bold text-sm hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-lg">add_alarm</span>
+                Añadir al Calendario
+                </button>
+                <button class="flex-1 p-3 flex items-center justify-center gap-2 text-center text-white font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors border-l border-border-dark">
+                <span class="material-symbols-outlined text-lg">send</span>
+                Transferir
+                </button>
+            </div>
+            </div>
+
+        </div>
+        
+        <div id="proximos-empty-state" class="hidden flex-col items-center justify-center text-center p-8 mt-10">
+            <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+            <h3 class="text-text-primary-dark text-lg font-bold mt-4">No tienes tickets próximos</h3>
+            <p class="text-text-secondary-dark text-sm mt-1 max-w-xs">¡No te pierdas de la próxima gran noche!</p>
+            <a href="eventos.html" class="flex min-w-[84px] max-w-xs mt-6 cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] transition-transform active:scale-95">
+            <span class="truncate">Ver Próximos Eventos</span>
+            </a>
+        </div>
+        
+        </div>
+        
+        <div id="historial-content" class="tab-pane hidden">
+        <div id="historial-list" class="flex flex-col gap-4 p-4">
+            
+            <div class="ticket-card rounded-xl bg-card-dark shadow-lg overflow-hidden opacity-70">
+            <img class="w-full h-32 object-cover" 
+                src="https://images.unsplash.com/photo-1542866734-6019a1648011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDIyfHxyZXRybyUyMDgwcyUyMHBhcnR5fGVufDB8fHx8MTczMDExOTA3OXww&ixid=rb-4.0.3&q=80&w=600" 
+                alt="Fiesta 80s Rewind">
+            
+            <div class="p-4 flex flex-col gap-3">
+                <h2 class="text-xl font-bold text-white">Fiesta 80s Rewind</h2>
+                <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-text-secondary-dark text-lg">calendar_month</span>
+                <p class="text-sm font-medium text-text-secondary-dark">VIE, 13 NOV (Finalizado)</p>
+                </div>
+                <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-text-secondary-dark text-lg">confirmation_number</span>
+                <p class="text-sm font-medium text-text-secondary-dark">1 x Entrada General</p>
+                </div>
+            </div>
+            
+            <div class="flex border-t border-border-dark">
+                <a href="#" class="flex-1 p-3 flex items-center justify-center gap-2 text-center text-primary font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors">
+                <span class="material-symbols-outlined text-lg">photo_camera</span>
+                Ver Galería
+                </a>
+            </div>
+            </div>
+            
+        </div>
+        
+        <div id="historial-empty-state" class="hidden flex-col items-center justify-center text-center p-8 mt-10">
+            <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50">history_toggle_off</span>
+            <h3 class="text-text-primary-dark text-lg font-bold mt-4">Aún no tienes un historial</h3>
+            <p class="text-text-secondary-dark text-sm mt-1 max-w-xs">Tus tickets de eventos pasados aparecerán aquí.</p>
+        </div>
+        
+        </div>
+
+    </main>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- LÓGICA DE PESTAÑAS (TABS) ---
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            
+            tabPanes.forEach(pane => pane.classList.add('hidden'));
+            tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('text-text-secondary-dark');
+            });
+            
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) targetPane.classList.remove('hidden');
+            
+            button.classList.add('active');
+            button.classList.remove('text-text-secondary-dark');
+            
+            // Al cambiar de pestaña, revisar los estados vacíos
+            checkEmptyStates();
+        });
+        });
+        
+        // --- LÓGICA DE ESTADO VACÍO ---
+        function checkEmptyStates() {
+        const proximasList = document.getElementById('proximas-list');
+        const historialList = document.getElementById('historial-list');
+        const proximasEmpty = document.getElementById('proximas-empty-state');
+        const historialEmpty = document.getElementById('historial-empty-state');
+
+        // Revisar Pestaña "Próximas"
+        if (proximasList.children.length === 0) {
+            proximasEmpty.classList.remove('hidden');
+            proximasList.classList.add('hidden'); // Ocultar lista
+        } else {
+            proximasEmpty.classList.add('hidden');
+            proximasList.classList.remove('hidden'); // Mostrar lista
+        }
+
+        // Revisar Pestaña "Historial"
+        if (historialList.children.length === 0) {
+            historialEmpty.classList.remove('hidden');
+            historialList.classList.add('hidden'); // Ocultar lista
+        } else {
+            historialEmpty.classList.add('hidden');
+            historialList.classList.remove('hidden'); // Mostrar lista
+        }
+        }
+        
+        // --- INICIALIZACIÓN ---
+        checkEmptyStates(); // Revisar estados vacíos al cargar
+        
+    });
+</script>
+
+</body>
+</html>
