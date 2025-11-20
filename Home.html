@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FESTA - Restobar</title>
-    <link href="images/LogoFesta.ico" rel="icon" />
+    <link href="images/LogoFesta.svg" rel="icon" />
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -20,7 +20,7 @@
             colors: {
               primary: "#5e1a0d",
               "background-light": "#f8f6f6",
-              "background-dark": "#211411",
+              "background-dark": "#2b140f",
               "card-dark": "#1E1E1E",
               "text-primary-dark": "#F5F5F5",
               "text-secondary-dark": "#A9A9A9",
@@ -46,7 +46,7 @@
       }
       
       /* NOTA DE LIMPIEZA: 
-         Consolidados los 3 <style> duplicados y actualizado a 100dvh.
+        Consolidados los 3 <style> duplicados y actualizado a 100dvh.
       */
       body {
         min-height: 100dvh;
@@ -68,10 +68,10 @@
 
 <!-- Fondo -->
   <div class="fixed inset-0 z-0">
-    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+    <div class="w-full h-full bg-center bg-cover bg-fixed opacity-20"
       style="background-image: url('images/FestaFrontal.webp');">
     </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/40 to-transparent"></div>
   </div>
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
@@ -246,34 +246,29 @@
       </section>
       
     </main>
-</div> <nav classaria-label="Navegación principal" class="fixed bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+</div> <nav classaria-label="Navegación principal" class="fixed bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-background-dark/90 backdrop-blur-sm">
   <div class="flex h-20 items-center justify-around max-w-md mx-auto">
-    
-    <a class="flex flex-col items-center gap-1 text-primary transition-transform duration-200 ease-in-out active:scale-90" href="Home.html">
-      <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
-      <span class="text-xs font-bold">Inicio</span>
-    </a>
-    
-    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="Menu.html">
-      <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
-      <span class="text-xs">Menú</span>
-    </a>
-    
-    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="Eventos.html">
-      <span class="material-symbols-outlined text-2xl">calendar_month</span>
-      <span class="text-xs">Eventos</span>
-    </a>
-    
-    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="Reservacion.html">
-      <span class="material-symbols-outlined text-2xl">book_online</span>
-      <span class="text-xs">Reservar</span>
-    </a>
-    
-    <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-transform duration-200 ease-in-out active:scale-90" href="Perfil.html">
-      <span class="material-symbols-outlined text-2xl">person</span>
-      <span classs="text-xs">Perfil</span>
-    </a>
-  </div>
+      <a class="flex flex-col items-center gap-1 text-primary" href="Home.html" aria-current="page" aria-label="Inicio">
+        <span class="material-symbols-outlined !font-extrabold text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
+        <span class="text-xs font-bold">Inicio</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Menu.html" aria-label="Menú">
+        <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+        <span class="text-xs">Menú</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Eventos.html" aria-label="Eventos">
+        <span class="material-symbols-outlined text-2xl">calendar_month</span>
+        <span class="text-xs">Eventos</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Reservacion.html" aria-label="Reservar">
+        <span class="material-symbols-outlined text-2xl">book_online</span>
+        <span class="text-xs">Reservar</span>
+      </a>
+      <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Perfil.html" aria-label="Perfil">
+        <span class="material-symbols-outlined text-2xl">person</span>
+        <span class="text-xs">Perfil</span>
+      </a>
+    </div>
 </nav>
 
 </body>

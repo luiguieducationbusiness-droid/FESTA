@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FESTA - Mis Reservaciones</title>
+    <link href="images/LogoFesta.svg" rel="icon" />
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -19,7 +20,7 @@
                 colors: {
                 primary: "#5e1a0d",
                 "background-light": "#f8f6f6",
-                "background-dark": "#211411", // Color unificado
+                "background-dark": "#2b140f", // Color unificado
                 "card-dark": "#1E1E1E",     // Color unificado
                 "text-primary-dark": "#F5F5F5",
                 "text-secondary-dark": "#A9A9A9",
@@ -54,6 +55,14 @@
         </style>
     </head>
     <body class="bg-background-light dark:bg-background-dark font-display">
+
+    <!-- Fondo -->
+    <div class="fixed inset-0 z-0">
+        <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
+        style="background-image: url('images/FestaFrontal.webp');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+    </div> 
 
     <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
 

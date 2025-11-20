@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FESTA - Reservaciones</title>
-    <link href="images/LogoFesta.ico" rel="icon" />
+    <link href="images/LogoFesta.svg" rel="icon" />
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -20,7 +20,7 @@
             colors: {
               primary: "#5e1a0d",
               "background-light": "#f8f6f6",
-              "background-dark": "#211411", // <-- Coincide con Home
+              "background-dark": "#2b140f", // <-- Coincide con Home
               "card-dark": "#1E1E1E",     // <-- Coincide con Home
               "text-primary-dark": "#F5F5F5",
               "text-secondary-dark": "#A9A9A9",
@@ -94,9 +94,9 @@
               <p class="text-white text-base font-medium leading-normal pb-2">Fecha</p>
               <div class="relative flex w-full flex-1 items-stretch rounded-lg">
                 <input id="res-date" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-border-dark bg-card-dark focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal" 
-                       placeholder="Elige una fecha" type="text"
-                       onfocus="(this.type='date')" 
-                       onblur="(this.type='text')">
+                      placeholder="Elige una fecha" type="text"
+                      onfocus="(this.type='date')" 
+                      onblur="(this.type='text')">
                 <div class="text-text-secondary-dark flex border border-border-dark bg-card-dark items-center justify-center pr-[15px] rounded-r-lg border-l-0">
                   <span class="material-symbols-outlined">calendar_today</span>
                 </div>
@@ -105,7 +105,7 @@
             <label class="flex flex-col w-24" for="res-guests">
               <p class="text-white text-base font-medium leading-normal pb-2">Personas</p>
               <input id="res-guests" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-border-dark bg-card-dark focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal text-center" 
-                     type="number" value="2">
+                    type="number" value="2">
             </label>
           </div>
 
@@ -199,8 +199,8 @@
     </div>
   </main>
   
-  <nav class="fixed bottom-0 left-0 right-0 z-20 mx-auto max-w-md border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
-    <div class="flex h-20 items-center justify-around">
+  <nav classaria-label="Navegación principal" class="fixed bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex h-20 items-center justify-around max-w-md mx-auto">
       <a class="flex flex-col items-center gap-1 text-text-secondary-dark transition-colors hover:text-primary" href="Home.html" aria-label="Inicio">
         <span class="material-symbols-outlined text-2xl">home</span>
         <span class="text-xs">Inicio</span>
