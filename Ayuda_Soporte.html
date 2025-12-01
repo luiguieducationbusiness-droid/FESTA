@@ -49,6 +49,21 @@
         .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        /* NUEVA SECCIÓN: Ocultar barra de desplazamiento */
+        /* Para navegadores Chrome, Safari, Edge */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer y Edge antiguo */
+        html {
+            -ms-overflow-style: none;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display">
@@ -63,15 +78,18 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
 
-<header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <a href="Perfil.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-            aria-label="Volver a Perfil">
-        <span class="material-symbols-outlined">arrow_back_ios_new</span>
-    </a>
+<header class="fixed top-0 left-0 right-0 z-30 bg-background-dark/80 backdrop-blur-sm">
+    <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
+        <a href="Perfil.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+                aria-label="Volver a Perfil">
+            <span class="material-symbols-outlined">arrow_back_ios_new</span>
+        </a>
     <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Centro de Atención</h2>
-    <div class="flex size-10 shrink-0 items-center"></div> </header>
+    <div class="flex size-10 shrink-0 items-center"></div>
+    </div>
+</header>
 
-    <main class="flex flex-col gap-6 p-4 pb-10">
+    <main class="flex flex-col gap-6 p-4 pb-10 pt-20">
     
     <div class="flex flex-col gap-4 rounded-xl bg-card-dark/80 p-5">
         <div class="flex items-start justify-between gap-4">

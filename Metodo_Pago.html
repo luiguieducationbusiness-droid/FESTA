@@ -62,6 +62,7 @@
         body {
         min-height: 100dvh;
         }
+        
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display">
@@ -76,15 +77,15 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden antialiased">
 
-<header id="main-header" class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <button id="back-btn" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+<header id="main-header" class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+    <a id="back-btn" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
             aria-label="Volver">
         <span class="material-symbols-outlined">arrow_back_ios_new</span>
-    </button>
+    </a>
     <h1 id="header-title" class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Métodos de Pago</h1>
     <div class="flex size-10 shrink-0 items-center"></div> </header>
 
-    <main id="list-screen" class="flex-grow px-4 pt-4 pb-28">
+    <main id="list-screen" class="flex-grow px-4 pt-20 pb-28">
         <div id="payment-methods-container" class="flex flex-col gap-4">
         
         <div id="payment-method-mastercard" class="payment-method-card flex items-center gap-4 bg-card-dark rounded-lg p-4 min-h-[72px] justify-between">
@@ -133,7 +134,7 @@
     </div>
     </main>
 
-    <main id="form-screen" class="hidden flex-1 flex flex-col">
+    <main id="form-screen" class="hidden flex-1 pt-20 flex flex-col">
         <div class="flex-1 px-4 py-4 flex flex-col gap-6">
         
         <div class="relative w-full max-w-sm mx-auto aspect-[1.586] rounded-xl shadow-lg bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 flex flex-col justify-between overflow-hidden">
@@ -198,7 +199,7 @@
         </footer>
     </main>
 
-    <main id="confirm-screen" class="hidden flex-1 px-4 py-4 flex flex-col justify-between">
+    <main id="confirm-screen" class="hidden flex-1 px-4 py-4 pt-20 flex flex-col justify-between">
         <div class="flex flex-col gap-4">
         <h3 class="text-text-primary-dark text-lg font-bold">Confirmar detalles</h3>
         <p class="text-text-secondary-dark text-sm">Estás a punto de añadir esta tarjeta a tu cuenta. ¿Es correcto?</p>

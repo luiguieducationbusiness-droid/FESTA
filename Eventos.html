@@ -48,6 +48,21 @@
       body {
         min-height: 100dvh;
       }
+      /* NUEVA SECCIÓN: Ocultar barra de desplazamiento */
+        /* Para navegadores Chrome, Safari, Edge */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer y Edge antiguo */
+        html {
+            -ms-overflow-style: none;
+        }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark">
@@ -62,17 +77,20 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
 
-  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <img src="images/logoFesta.png" alt="FESTA" class="h-12 sm:h-12 object-contain" />
-    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-            aria-label="Ver notificaciones">
-      <a href="Notificacion.html" class="flex items-center">
-          <span class="material-symbols-outlined text-2xl">notifications</span>
-      </a>
-    </button>
-  </header>
-  
-  <main class="flex-1 pb-28">
+  <header class="fixed top-0 left-0 right-0 z-20 bg-background-dark/90 backdrop-blur-sm">
+      <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
+        <img src="images/logoFesta.png" alt="FESTA" class="h-12 sm:h-12 object-contain" />
+        
+        <button type="button" aria-label="Notificaciones" 
+                class="flex cursor-pointer items-center justify-center rounded-full text-text-primary-dark transition-transform active:scale-90">
+          <a href="Notificacion.html" class="flex items-center">
+            <span class="material-symbols-outlined text-2xl">notifications</span>
+          </a>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 pb-28 pt-20">
     
     <div class="px-4 py-3">
       <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">

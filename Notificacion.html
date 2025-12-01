@@ -60,6 +60,21 @@
       .scroll-snap-start {
         scroll-snap-align: start;
       }
+      /* NUEVA SECCIÓN: Ocultar barra de desplazamiento */
+        /* Para navegadores Chrome, Safari, Edge */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer y Edge antiguo */
+        html {
+            -ms-overflow-style: none;
+        }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark">
@@ -74,11 +89,12 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
   
-  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <a href="Home.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-            aria-label="Volver a Inicio">
-      <span class="material-symbols-outlined">arrow_back_ios_new</span>
-    </a>
+  <header class="fixed top-0 left-0 right-0 z-30 bg-background-dark/80 backdrop-blur-sm">
+    <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
+      <a href="Home.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+              aria-label="Volver a Inicio">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </a>
     <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Notificaciones</h2>
     <button class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
             aria-label="Configuración de Notificaciones">
@@ -86,14 +102,14 @@
     </button>
   </header>
   
-  <main class="flex-1 pb-10">
+  <main class="flex-1 pb-10 pt-20">
     <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-snap-x">
       <div class="flex items-stretch p-4 gap-4">
         
         <a href="Menu.html" class="scroll-snap-start flex h-full flex-1 flex-col gap-4 rounded-xl bg-card-dark shadow-sm min-w-64 overflow-hidden">
           <img src="images/CoctelesFesta.jpg" 
-               alt="Cócteles vibrantes en una barra"
-               class="w-full aspect-video object-cover">
+              alt="Cócteles vibrantes en una barra"
+              class="w-full aspect-video object-cover">
           <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
             <div>
               <p class="text-text-primary-dark text-base font-bold leading-normal">¡Happy Hour Hoy!</p>
@@ -107,8 +123,8 @@
         
         <a href="Menu.html" class="scroll-snap-start flex h-full flex-1 flex-col gap-4 rounded-xl bg-card-dark shadow-sm min-w-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDR8fGNob2NvbGF0ZSUyMGxhdmElMjBjYWtlfGVufDB8fHx8MTczMDA2NDA0Mnww&ixlib=rb-4.0.3&q=80&w=400" 
-               alt="Un delicioso trozo de pastel de chocolate"
-               class="w-full aspect-video object-cover">
+              alt="Un delicioso trozo de pastel de chocolate"
+              class="w-full aspect-video object-cover">
           <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
             <div>
               <p class="text-text-primary-dark text-base font-bold leading-normal">Un Dulce Regalo</p>

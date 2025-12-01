@@ -46,6 +46,21 @@
       body {
         min-height: 100dvh;
       }
+      /* NUEVA SECCIÓN: Ocultar barra de desplazamiento */
+        /* Para navegadores Chrome, Safari, Edge */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer y Edge antiguo */
+        html {
+            -ms-overflow-style: none;
+        }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark">
@@ -60,15 +75,17 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
   
-  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <h1 class="text-xl font-bold leading-tight tracking-tighter text-text-primary-dark">Mi Perfil</h1>
-    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-            aria-label="Configuración">
-      <span class="material-symbols-outlined text-2xl">settings</span>
-    </button>
+  <header class="fixed top-0 left-0 right-0 z-20 bg-background-dark/80 backdrop-blur-sm">
+    <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
+      <h1 class="text-xl font-bold leading-tight tracking-tighter text-text-primary-dark">Mi Perfil</h1>
+      <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+              aria-label="Configuración">
+        <span class="material-symbols-outlined text-2xl">settings</span>
+      </button>
+    </div>
   </header>
   
-  <main class="flex-1 space-y-6 pb-28">
+  <main class="flex-1 space-y-6 pb-28 pt-16">
     
     <section class="flex flex-col items-center gap-3 px-4 pt-4">
       <img class="aspect-square w-24 h-24 rounded-full border-2 border-primary object-cover" 

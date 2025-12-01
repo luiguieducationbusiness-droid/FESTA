@@ -61,6 +61,21 @@
         color: theme('colors.white');
         border-bottom-color: theme('colors.primary');
       }
+      /* NUEVA SECCIÓN: Ocultar barra de desplazamiento */
+        /* Para navegadores Chrome, Safari, Edge */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        * {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer y Edge antiguo */
+        html {
+            -ms-overflow-style: none;
+        }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark">
@@ -75,18 +90,20 @@
 
 <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
 
-  <header class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
-    <h1 class="text-xl font-bold leading-tight tracking-tighter text-text-primary-dark">Menú</h1>
-    <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-            aria-label="Ver notificaciones">
-      <a href="Notificacion.html" class="flex items-center">
-          <span class="material-symbols-outlined text-2xl">notifications</span>
-      </a>
-    </button>
+  <header class="fixed top-0 left-0 right-0 z-30 bg-background-dark/100 backdrop-blur-sm">
+    <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
+      <h1 class="text-xl font-bold leading-tight tracking-tighter text-text-primary-dark">Menú</h1>
+      <button class="flex cursor-pointer items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
+              aria-label="Ver notificaciones">
+        <a href="Notificacion.html" class="flex items-center">
+            <span class="material-symbols-outlined text-2xl">notifications</span>
+        </a>
+      </button>
+    </div>
   </header>
   
-  <div class="sticky top-16 z-10 bg-background-dark/80 backdrop-blur-sm">
-    <div class="flex border-b border-white/10 px-4 justify-between overflow-x-auto whitespace-nowrap space-x-4 pb-0 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+  <div class="fixed top-16 left-0 right-0 z-30 bg-background-dark/90 backdrop-blur-sm">
+    <div class="mx-auto max-w-md flex border-b border-white/10 px-4 justify-between overflow-x-auto whitespace-nowrap space-x-4 pb-0 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <button class="category-tab-btn active flex-shrink-0 flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary-dark py-3 px-2" data-target="entradas-content">
         <p class="text-sm font-bold leading-normal tracking-[0.015em]">Entradas</p>
       </button>
@@ -102,7 +119,7 @@
     </div>
   </div>
   
-  <main class="flex-1 pb-48">
+  <main class="flex-1 pb-48 pt-32"> 
     
     <section id="entradas-content" class="menu-section pt-5">
       <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">Entradas</h2>
