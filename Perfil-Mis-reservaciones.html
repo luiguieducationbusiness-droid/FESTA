@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>FESTA - Mis Reservaciones</title>
+    <title>Mis Reservaciones - FESTA</title>
     <link href="images/LogoFesta.svg" rel="icon" />
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -20,8 +20,8 @@
                 colors: {
                 primary: "#5e1a0d",
                 "background-light": "#f8f6f6",
-                "background-dark": "#2b140f", // Color unificado
-                "card-dark": "#1E1E1E",     // Color unificado
+                "background-dark": "#2b140f", // Café oscuro maestro
+                "card-dark": "#1E1E1E",     // Gris oscuro estándar
                 "text-primary-dark": "#F5F5F5",
                 "text-secondary-dark": "#A9A9A9",
                 "border-dark": "#3c3c3c",
@@ -35,269 +35,431 @@
                 xl: "0.75rem",
                 full: "9999px",
                 },
+                keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideUp: {
+                    '0%': { transform: 'translateY(20px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                }
+                },
+                animation: {
+                'fade-in': 'fadeIn 0.3s ease-out forwards',
+                'slide-up': 'slideUp 0.4s ease-out forwards',
+                }
             },
             },
         };
-        </script>
+    </script>
         
-        <style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         body {
-            min-height: 100vh;
+            min-height: 100dvh;
         }
-        /* Estilo para la pestaña activa */
+        /* Ocultar scrollbar pero permitir scroll */
+        ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; }
+        
+        /* Estados activos */
         .tab-btn.active {
-            color: theme('colors.white');
-            background-color: theme('colors.background-dark');
+            color: #ffffff;
+            border-bottom-color: #5e1a0d; /* primary */
         }
-        </style>
-    </head>
-    <body class="bg-background-light dark:bg-background-dark font-display">
+        .time-slot.selected {
+            background-color: #5e1a0d;
+            color: white;
+            border-color: #5e1a0d;
+        }
+        .zone-card.selected {
+            border-color: #5e1a0d;
+            background-color: rgba(94, 26, 13, 0.2);
+            color: white;
+        }
+        .date-cell.selected div {
+            background-color: #5e1a0d;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-primary-dark">
 
-    <!-- Fondo -->
     <div class="fixed inset-0 z-0">
         <div class="w-full h-full bg-center bg-cover bg-fixed opacity-30"
         style="background-image: url('images/FestaFrontal.webp');">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-    </div> 
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
+    </div>
 
     <div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col overflow-x-hidden">
 
-    <header class="fixed top-0 left-0 right-0 z-30 bg-background-dark/80 backdrop-blur-sm">
-        <div class="mx-auto max-w-md flex items-center justify-between p-4 pb-3">
-            <a href="Perfil.html" class="flex size-10 shrink-0 items-center justify-center rounded-full p-1 text-text-primary-dark transition-colors hover:bg-white/10"
-                    aria-label="Volver a Perfil">
-            <span class="material-symbols-outlined">arrow_back_ios_new</span>
-            </a>
-            <h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Mis Reservaciones</h1>
-            <div class="flex size-10 shrink-0 items-center"></div> 
-        </div>
-        </header>
-    
-    <main class="flex-grow pb-10 pt-16">
-        
-        <div class="flex px-4 py-3">
-        <div class="flex h-10 flex-1 items-center justify-center rounded-lg bg-card-dark p-1">
-            <button class="tab-btn active flex-1 cursor-pointer h-full rounded-lg px-2 text-sm font-medium" data-target="proximas-content">
-            <span class="truncate">Próximas</span>
+        <header id="main-header" class="sticky top-0 z-20 flex items-center justify-between bg-background-dark/90 p-4 pb-3 backdrop-blur-sm transition-all duration-300">
+            <button id="back-btn" class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white" aria-label="Volver">
+                <span class="material-symbols-outlined text-2xl">arrow_back</span>
             </button>
-            <button class="tab-btn flex-1 cursor-pointer h-full rounded-lg px-2 text-text-secondary-dark text-sm font-medium" data-target="historial-content">
-            <span class="truncate">Historial</span>
-            </button>
-        </div>
-        </div>
-        
-        <div id="proximas-content" class="tab-pane">
-        <div id="proximas-list" class="flex flex-col gap-4 p-4">
+            <h1 id="header-title" class="text-white text-lg font-bold leading-tight tracking-[0.08em] flex-1 text-center">Mis Reservaciones</h1>
+            <div class="size-10 shrink-0"></div> </header>
+
+        <main id="view-list" class="flex-grow pb-24 animate-fade-in">
             
-            <div class="reservation-card rounded-xl bg-card-dark shadow-lg overflow-hidden">
-            <div class="p-4">
-                <div class="flex justify-between items-center border-b border-border-dark pb-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                    <p class="text-sm font-bold text-white">SÁB, 28 NOV</p>
-                    <p class="text-sm text-text-secondary-dark">8:00 PM</p>
+            <div class="sticky top-[60px] z-10 bg-background-dark/90 backdrop-blur-sm pt-2">
+                <div class="flex border-b border-white/10 mx-4">
+                    <button class="tab-btn active flex flex-1 flex-col items-center justify-center border-b-[3px] border-primary pb-[13px] pt-4 text-white transition-colors" data-target="upcoming-list">
+                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">Próximas</p>
+                    </button>
+                    <button class="tab-btn flex flex-1 flex-col items-center justify-center border-b-[3px] border-transparent pb-[13px] pt-4 text-text-secondary-dark transition-colors" data-target="past-list">
+                        <p class="text-sm font-bold leading-normal tracking-[0.015em]">Historial</p>
+                    </button>
                 </div>
-                <span class="text-xs font-bold text-green-400 bg-green-900/50 px-2 py-1 rounded-full">Confirmada</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3 pt-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">group</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Personas</p>
-                    <p class="text-sm font-medium text-white">2 Personas</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">deck</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Zona</p>
-                    <p class="text-sm font-medium text-white">Terraza</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="flex border-t border-border-dark">
-                <button class="cancel-btn flex-1 p-3 text-center text-red-500 font-bold text-sm hover:bg-white/5 transition-colors">Cancelar</button>
-                <a href="#" class="flex-1 p-3 text-center text-white font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors border-l border-border-dark">Modificar</a>
-            </div>
-            </div>
-            
-            <div class="reservation-card rounded-xl bg-card-dark shadow-lg overflow-hidden">
-            <div class="p-4">
-                <div class="flex justify-between items-center border-b border-border-dark pb-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
-                    <p class="text-sm font-bold text-white">VIE, 04 DIC</p>
-                    <p class="text-sm text-text-secondary-dark">9:30 PM</p>
-                </div>
-                <span class="text-xs font-bold text-green-400 bg-green-900/50 px-2 py-1 rounded-full">Confirmada</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3 pt-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">group</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Personas</p>
-                    <p class="text-sm font-medium text-white">4 Personas</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">restaurant</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Zona</p>
-                    <p class="text-sm font-medium text-white">Salón Principal</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="flex border-t border-border-dark">
-                <button class="cancel-btn flex-1 p-3 text-center text-red-500 font-bold text-sm hover:bg-white/5 transition-colors">Cancelar</button>
-                <a href="#" class="flex-1 p-3 text-center text-white font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors border-l border-border-dark">Modificar</a>
-            </div>
             </div>
 
-        </div>
-        
-        <div id="proximas-empty-state" class="hidden flex-col items-center justify-center text-center p-8 mt-10">
-            <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50" style="font-variation-settings: 'FILL' 1;">book_online</span>
-            <h3 class="text-text-primary-dark text-lg font-bold mt-4">No tienes reservaciones próximas</h3>
-            <p class="text-text-secondary-dark text-sm mt-1 max-w-xs">Tu próxima gran noche te está esperando. Asegura tu mesa.</p>
-            <a href="reservar.html" class="flex min-w-[84px] max-w-xs mt-6 cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] transition-transform active:scale-95">
-            <span class="truncate">Reservar Ahora</span>
-            </a>
-        </div>
-        
-        </div>
-        
-        <div id="historial-content" class="tab-pane hidden">
-        <div id="historial-list" class="flex flex-col gap-4 p-4">
-            
-            <div class="reservation-card rounded-xl bg-card-dark shadow-lg overflow-hidden opacity-70">
-            <div class="p-4">
-                <div class="flex justify-between items-center border-b border-border-dark pb-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-lg">calendar_month</span>
-                    <p class="text-sm font-bold text-white">JUE, 12 NOV</p>
-                    <p class="text-sm text-text-secondary-dark">7:00 PM</p>
-                </div>
-                <span class="text-xs font-bold text-gray-400 bg-gray-700/50 px-2 py-1 rounded-full">Completada</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3 pt-3">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">group</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Personas</p>
-                    <p class="text-sm font-medium text-white">2 Personas</p>
+            <div class="flex flex-col gap-4 p-4 min-h-[50vh]">
+                
+                <div id="upcoming-list" class="flex flex-col gap-4">
+                    <div class="reservation-card flex flex-col rounded-xl bg-card-dark overflow-hidden shadow-lg border border-white/5" data-id="res-001">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("images/ClienteFesta.jpg");'>
+                            <div class="w-full h-full bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                                <div class="flex justify-between items-end w-full">
+                                    <p class="text-lg font-bold text-white">FESTA - Terraza</p>
+                                    <span class="inline-flex items-center rounded-full bg-green-500/20 px-3 py-1 text-xs font-bold text-green-400 border border-green-500/30">Confirmada</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex w-full grow flex-col gap-3 p-4">
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-3 text-text-secondary-dark">
+                                    <span class="material-symbols-outlined text-primary">calendar_today</span>
+                                    <p class="text-base font-normal text-white">Sábado, 25 Nov a las 7:30 PM</p>
+                                </div>
+                                <div class="flex items-center gap-3 text-text-secondary-dark">
+                                    <span class="material-symbols-outlined text-primary">group</span>
+                                    <p class="text-base font-normal text-white">4 Personas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 p-4 pt-0 border-t border-white/10 mt-2 pt-3">
+                            <button class="flex-1 h-10 rounded-lg bg-white/5 text-white text-sm font-bold hover:bg-white/10 transition-colors">
+                                Modificar
+                            </button>
+                            <button class="cancel-trigger-btn flex-1 h-10 rounded-lg border border-red-900/50 text-red-400 text-sm font-bold hover:bg-red-900/20 transition-colors" data-id="res-001" data-place="FESTA - Terraza" data-date="25 Nov" data-time="7:30 PM">
+                                Cancelar
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-text-secondary-dark text-xl">nightlife</span>
-                    <div>
-                    <p class="text-xs text-text-secondary-dark">Zona</p>
-                    <p class="text-sm font-medium text-white">Bar</p>
+
+                <div id="past-list" class="hidden flex-col gap-4">
+                    <div class="flex flex-col items-center justify-center gap-4 px-8 py-16 text-center opacity-50">
+                        <span class="material-symbols-outlined text-6xl text-text-secondary-dark">history</span>
+                        <div class="flex flex-col gap-1">
+                            <h3 class="text-xl font-bold text-white">Sin Historial</h3>
+                            <p class="text-text-secondary-dark">Tus reservas pasadas aparecerán aquí.</p>
+                        </div>
                     </div>
                 </div>
+
+                <div id="empty-state" class="hidden flex-col items-center justify-center gap-4 px-8 py-16 text-center">
+                    <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50">event_busy</span>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-xl font-bold text-white">No hay reservaciones</h3>
+                        <p class="text-text-secondary-dark">Tu próxima gran noche te espera.</p>
+                    </div>
                 </div>
+
             </div>
-            <div class="flex border-t border-border-dark">
-                <button class="flex-1 p-3 text-center text-white font-bold text-sm hover:bg-white/5 transition-colors">Dejar Reseña</button>
-                <a href="reservar.html" class="flex-1 p-3 text-center text-primary font-bold text-sm bg-white/10 hover:bg-white/20 transition-colors border-l border-border-dark">Volver a Reservar</a>
-            </div>
-            </div>
-            
-        </div>
-        
-        <div id="historial-empty-state" class="hidden flex-col items-center justify-center text-center p-8 mt-10">
-            <span class="material-symbols-outlined text-6xl text-text-secondary-dark/50">history</span>
-            <h3 class="text-text-primary-dark text-lg font-bold mt-4">Aún no tienes un historial</h3>
-            <p class="text-text-secondary-dark text-sm mt-1 max-w-xs">Tus reservaciones pasadas aparecerán aquí.</p>
-        </div>
-        
+        </main>
+
+        <div id="fab-container" class="fixed bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent mx-auto max-w-md">
+            <button id="go-to-new-res-btn" class="w-full flex items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold shadow-lg shadow-primary/40 hover:bg-primary/90 transition-transform active:scale-95">
+                <span class="material-symbols-outlined">add</span>
+                Reservar Mesa
+            </button>
         </div>
 
-    </main>
+
+        <main id="view-new" class="hidden flex-grow px-4 pb-28 pt-2 animate-slide-up">
+            
+            <section class="mb-6">
+                <h2 class="text-white text-xl font-bold mb-3">Elige una fecha</h2>
+                <div class="rounded-xl bg-card-dark p-3 border border-border-dark">
+                    <div class="flex items-center justify-between mb-2">
+                        <button class="p-1 hover:bg-white/10 rounded"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <p class="text-white font-bold">Diciembre 2025</p>
+                        <button class="p-1 hover:bg-white/10 rounded"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                    <div class="grid grid-cols-7 text-center mb-2">
+                        <span class="text-xs text-text-secondary-dark">D</span><span class="text-xs text-text-secondary-dark">L</span><span class="text-xs text-text-secondary-dark">M</span><span class="text-xs text-text-secondary-dark">M</span><span class="text-xs text-text-secondary-dark">J</span><span class="text-xs text-text-secondary-dark">V</span><span class="text-xs text-text-secondary-dark">S</span>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1">
+                        <span></span><span></span><span></span>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white/50">1</button>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white/50">2</button>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white hover:bg-white/10">3</button>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white hover:bg-white/10">4</button>
+                        <button class="date-cell selected h-9 w-9 flex items-center justify-center rounded-full text-sm font-bold bg-primary text-white shadow-lg shadow-primary/50">5</button>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white hover:bg-white/10">6</button>
+                        <button class="date-cell h-9 w-9 flex items-center justify-center rounded-full text-sm text-white hover:bg-white/10">7</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-white text-xl font-bold mb-3">Elige hora</h2>
+                <div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+                    <button class="time-slot h-10 px-4 rounded-lg bg-card-dark border border-border-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap">18:00</button>
+                    <button class="time-slot h-10 px-4 rounded-lg bg-card-dark border border-border-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap">18:30</button>
+                    <button class="time-slot selected h-10 px-4 rounded-lg bg-primary text-white text-sm font-bold whitespace-nowrap shadow-md shadow-primary/30">19:00</button>
+                    <button class="time-slot h-10 px-4 rounded-lg bg-card-dark border border-border-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap">19:30</button>
+                    <button class="time-slot h-10 px-4 rounded-lg bg-card-dark border border-border-dark text-text-secondary-dark text-sm font-medium whitespace-nowrap">20:00</button>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-6">
+                <section>
+                    <h2 class="text-white text-xl font-bold mb-3">Personas</h2>
+                    <div class="flex items-center justify-between rounded-xl bg-card-dark border border-border-dark p-2 px-4">
+                        <button id="btn-minus" class="size-10 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-white/10"><span class="material-symbols-outlined">remove</span></button>
+                        <p id="guest-count" class="text-2xl font-bold text-white">2</p>
+                        <button id="btn-plus" class="size-10 flex items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/30"><span class="material-symbols-outlined">add</span></button>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="text-white text-xl font-bold mb-3">Zona</h2>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="zone-card flex flex-col items-center justify-center gap-1 rounded-lg border border-border-dark bg-card-dark p-2 text-text-secondary-dark hover:border-white/30">
+                            <span class="material-symbols-outlined text-2xl">deck</span>
+                            <span class="text-[10px] font-bold uppercase">Terraza</span>
+                        </button>
+                        <button class="zone-card selected flex flex-col items-center justify-center gap-1 rounded-lg border border-primary bg-primary/20 p-2 text-white shadow-inner">
+                            <span class="material-symbols-outlined text-2xl">nightlife</span>
+                            <span class="text-[10px] font-bold uppercase">Bar</span>
+                        </button>
+                        <button class="zone-card flex flex-col items-center justify-center gap-1 rounded-lg border border-border-dark bg-card-dark p-2 text-text-secondary-dark hover:border-white/30">
+                            <span class="material-symbols-outlined text-2xl">restaurant</span>
+                            <span class="text-[10px] font-bold uppercase">Salón</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <section>
+                <h2 class="text-white text-xl font-bold mb-3">Solicitudes Especiales</h2>
+                <textarea class="w-full rounded-xl bg-card-dark border border-border-dark p-4 text-white placeholder:text-text-secondary-dark focus:ring-1 focus:ring-primary focus:border-primary resize-none" placeholder="¿Alergias? ¿Es un cumpleaños?" rows="3"></textarea>
+            </section>
+
+            <div class="mt-8">
+                <button id="confirm-reservation-btn" class="w-full rounded-xl bg-primary py-4 text-center text-base font-bold text-white shadow-lg shadow-primary/40 hover:bg-primary/90 transition-transform active:scale-95">
+                    Confirmar Reservación
+                </button>
+            </div>
+        </main>
+
+
+        <main id="view-cancel" class="hidden flex-grow px-4 pb-10 pt-4 flex flex-col h-full animate-fade-in">
+            
+            <div class="px-2 py-4">
+                <div class="flex flex-col rounded-xl bg-card-dark border border-border-dark p-4 shadow-2xl">
+                    <img class="w-full h-32 object-cover rounded-lg mb-4" src="images/ClienteFesta.jpg" alt="FESTA Interior">
+                    
+                    <h3 class="text-xl font-bold text-white mb-1" id="cancel-place-name">FESTA - Terraza</h3>
+                    <p class="text-text-secondary-dark text-sm mb-4">ID: #RES-001</p>
+                    
+                    <div class="space-y-3 border-t border-white/10 pt-4">
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary-dark">Fecha</span>
+                            <span class="text-white font-medium" id="cancel-date-text">25 Nov</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-text-secondary-dark">Hora</span>
+                            <span class="text-white font-medium" id="cancel-time-text">7:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-auto px-4 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">¿Cancelar Reservación?</h2>
+                <p class="text-text-secondary-dark text-sm mb-8">Esta acción no se puede deshacer. Perderás tu mesa prioritaria.</p>
+                
+                <div class="space-y-3">
+                    <button id="do-cancel-btn" class="w-full rounded-xl bg-red-900/80 border border-red-700 py-4 text-white font-bold hover:bg-red-900 transition-transform active:scale-95">
+                        Sí, Cancelar
+                    </button>
+                    <button id="keep-res-btn" class="w-full rounded-xl bg-white/5 py-4 text-white font-bold hover:bg-white/10">
+                        Mantener Reservación
+                    </button>
+                </div>
+            </div>
+        </main>
+
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        // --- LÓGICA DE PESTAÑAS (TABS) ---
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabPanes = document.querySelectorAll('.tab-pane');
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Elementos Globales
+            const headerTitle = document.getElementById('header-title');
+            const backBtn = document.getElementById('back-btn');
+            const fabContainer = document.getElementById('fab-container');
+            
+            // Vistas
+            const viewList = document.getElementById('view-list');
+            const viewNew = document.getElementById('view-new');
+            const viewCancel = document.getElementById('view-cancel');
 
-        tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            
-            tabPanes.forEach(pane => pane.classList.add('hidden'));
-            tabButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.classList.add('text-text-secondary-dark');
-            });
-            
-            const targetPane = document.getElementById(targetId);
-            if (targetPane) targetPane.classList.remove('hidden');
-            
-            button.classList.add('active');
-            button.classList.remove('text-text-secondary-dark');
-            
-            // Al cambiar de pestaña, revisar los estados vacíos
-            checkEmptyStates();
-        });
-        });
-        
-        // --- LÓGICA DE CANCELAR RESERVA ---
-        function rebindCancelButtons() {
-        document.querySelectorAll('.cancel-btn').forEach(button => {
-            // Clonar para limpiar listeners viejos
-            const newButton = button.cloneNode(true);
-            button.parentNode.replaceChild(newButton, button);
-            
-            // Añadir nuevo listener
-            newButton.addEventListener('click', () => {
-            // Confirmación profesional
-            if (confirm('¿Estás seguro de que deseas cancelar esta reservación?')) {
-                const card = newButton.closest('.reservation-card');
-                card.remove();
+            // --- NAVEGACIÓN ---
+            function showView(viewName) {
+                // Ocultar todo
+                viewList.classList.add('hidden');
+                viewNew.classList.add('hidden');
+                viewCancel.classList.add('hidden');
+                fabContainer.classList.add('hidden'); // Ocultar FAB por defecto
+
+                // Mostrar objetivo
+                if (viewName === 'list') {
+                    viewList.classList.remove('hidden');
+                    fabContainer.classList.remove('hidden'); // Mostrar FAB solo en lista
+                    headerTitle.textContent = "Mis Reservaciones";
+                    backBtn.onclick = () => window.location.href = 'perfil.html';
+                } 
+                else if (viewName === 'new') {
+                    viewNew.classList.remove('hidden');
+                    headerTitle.textContent = "Nueva Reservación";
+                    backBtn.onclick = () => showView('list');
+                } 
+                else if (viewName === 'cancel') {
+                    viewCancel.classList.remove('hidden');
+                    headerTitle.textContent = "Cancelar";
+                    backBtn.onclick = () => showView('list');
+                }
                 
-                // Revisar si la lista de "Próximas" quedó vacía
-                checkEmptyStates();
+                // Scroll al top
+                window.scrollTo(0,0);
             }
+
+            // Inicializar en lista
+            showView('list');
+
+            // Botón Flotante -> Ir a Nueva Reserva
+            document.getElementById('go-to-new-res-btn').addEventListener('click', () => showView('new'));
+
+
+            // --- LOGICA VISTA LISTA (TABS) ---
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const upcomingList = document.getElementById('upcoming-list');
+            const pastList = document.getElementById('past-list');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Reset estilos tabs
+                    tabButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.add('text-text-secondary-dark');
+                        b.classList.remove('border-primary', 'text-white');
+                        b.classList.add('border-transparent');
+                    });
+                    // Activar actual
+                    btn.classList.add('active', 'border-primary', 'text-white');
+                    btn.classList.remove('text-text-secondary-dark', 'border-transparent');
+
+                    // Toggle listas
+                    if(btn.dataset.target === 'upcoming-list') {
+                        upcomingList.classList.remove('hidden');
+                        pastList.classList.add('hidden');
+                    } else {
+                        upcomingList.classList.add('hidden');
+                        pastList.classList.remove('hidden');
+                    }
+                });
             });
+
+
+            // --- LOGICA NUEVA RESERVA ---
+            // Selección visual (botones)
+            const setupSelection = (selector) => {
+                document.querySelectorAll(selector).forEach(el => {
+                    el.addEventListener('click', () => {
+                        document.querySelectorAll(selector).forEach(i => i.classList.remove('selected', 'bg-primary', 'text-white', 'shadow-md'));
+                        // Re-aplicar estilos base si necesario (simplificado aquí añadiendo clase selected)
+                        el.classList.add('selected'); 
+                        
+                        // Lógica específica para estilizar Tailwind dinámicamente si no usas CSS clases puras
+                        if(selector.includes('time-slot')) {
+                            document.querySelectorAll(selector).forEach(i => {
+                                i.classList.add('bg-card-dark', 'text-text-secondary-dark');
+                                i.classList.remove('bg-primary', 'text-white');
+                            });
+                            el.classList.remove('bg-card-dark', 'text-text-secondary-dark');
+                            el.classList.add('bg-primary', 'text-white');
+                        }
+                    });
+                });
+            };
+            setupSelection('.time-slot');
+            setupSelection('.date-cell'); // Solo visual para demo
+            
+            // Zonas
+            document.querySelectorAll('.zone-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.zone-card').forEach(c => {
+                        c.classList.remove('selected', 'border-primary', 'bg-primary/20', 'text-white');
+                        c.classList.add('border-border-dark', 'text-text-secondary-dark');
+                    });
+                    card.classList.add('selected', 'border-primary', 'bg-primary/20', 'text-white');
+                    card.classList.remove('border-border-dark', 'text-text-secondary-dark');
+                });
+            });
+
+            // Contador
+            let guests = 2;
+            const guestDisplay = document.getElementById('guest-count');
+            document.getElementById('btn-plus').addEventListener('click', () => { guests++; guestDisplay.textContent = guests; });
+            document.getElementById('btn-minus').addEventListener('click', () => { if(guests > 1) guests--; guestDisplay.textContent = guests; });
+
+            // Confirmar Reserva (Simulacro)
+            document.getElementById('confirm-reservation-btn').addEventListener('click', () => {
+                // Aquí iría la lógica real de guardar
+                alert("¡Reservación Confirmada! Te esperamos.");
+                showView('list');
+                // En una app real, aquí inyectarías el HTML de la nueva tarjeta en 'upcoming-list'
+            });
+
+
+            // --- LOGICA CANCELAR RESERVA ---
+            let reservationToDelete = null;
+
+            // Escuchar clics en botones de cancelar (Delegación de eventos para elementos dinámicos)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('cancel-trigger-btn')) {
+                    reservationToDelete = e.target.closest('.reservation-card');
+                    
+                    // Llenar datos en el modal de cancelar
+                    document.getElementById('cancel-place-name').textContent = e.target.dataset.place;
+                    document.getElementById('cancel-date-text').textContent = e.target.dataset.date;
+                    document.getElementById('cancel-time-text').textContent = e.target.dataset.time;
+                    
+                    showView('cancel');
+                }
+            });
+
+            document.getElementById('keep-res-btn').addEventListener('click', () => showView('list'));
+            
+            document.getElementById('do-cancel-btn').addEventListener('click', () => {
+                if(reservationToDelete) {
+                    reservationToDelete.remove();
+                    // Verificar si está vacío
+                    if(upcomingList.children.length === 0) {
+                        document.getElementById('empty-state').classList.remove('hidden');
+                    }
+                }
+                showView('list');
+            });
+
         });
-        }
-
-        // --- LÓGICA DE ESTADO VACÍO ---
-        function checkEmptyStates() {
-        const proximasList = document.getElementById('proximas-list');
-        const historialList = document.getElementById('historial-list');
-        const proximasEmpty = document.getElementById('proximas-empty-state');
-        const historialEmpty = document.getElementById('historial-empty-state');
-
-        // Revisar Pestaña "Próximas"
-        if (proximasList.children.length === 0) {
-            proximasEmpty.classList.remove('hidden');
-        } else {
-            proximasEmpty.classList.add('hidden');
-        }
-
-        // Revisar Pestaña "Historial"
-        if (historialList.children.length === 0) {
-            historialEmpty.classList.remove('hidden');
-        } else {
-            historialEmpty.classList.add('hidden');
-        }
-        }
-        
-        // --- INICIALIZACIÓN ---
-        rebindCancelButtons(); // Vincular botones de "Cancelar"
-        checkEmptyStates(); // Revisar estados vacíos al cargar
-        
-    });
-</script>
-
+    </script>
 </body>
 </html>
